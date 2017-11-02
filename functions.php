@@ -27,3 +27,35 @@ if ( ! function_exists( 'coletivo_footer_site_info' ) ) {
     }
 }
 add_action( 'coletivo_footer_site_info', 'coletivo_footer_site_info' );
+
+//plugin
+require get_stylesheet_directory() . '/inc/custom-post.php';
+require get_stylesheet_directory() . '/inc/ajax_functions.php';
+
+function bza_inscricoes_scripts() {
+    wp_enqueue_style( 'style-bza_inscricoes', get_stylesheet_directory_uri().'/assets/css/bza_inscricoes_style.css' );
+    wp_register_script('ajax-login-script', get_stylesheet_directory_uri() . '/assets/js/ajax-login-script.js', array('jquery') );
+    wp_enqueue_script( 'ajax-login-script' );
+}
+add_action( 'wp_enqueue_scripts', 'bza_inscricoes_scripts' );
+
+//ajax login
+function ajax_login_init(){
+
+    wp_register_script('ajax-login-script', get_stylesheet_directory_uri() . '/assets/js/ajax-login-script.js', array('jquery') );
+    wp_enqueue_script('ajax-login-script');
+
+    wp_localize_script( 'ajax-login-script', 'ajax_login_object', array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'redirecturl' => home_url(),
+        'loadingmessage' => __('Verificando dados...')
+    ));
+
+    // Enable the user with no privileges to run ajax_login() in AJAX
+    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
+}
+
+// Execute the action only if the user isn't logged in
+if (!is_user_logged_in()) {
+    add_action('init', 'ajax_login_init');
+}
