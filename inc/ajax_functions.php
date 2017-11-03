@@ -12,9 +12,9 @@ function ajax_login(){
 
     $user_signon = wp_signon( $info, false );
     if ( is_wp_error($user_signon) ){
-        echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
+        echo json_encode(array('loggedin'=>false, 'message'=>__('nome de usuário ou senha errada.')));
     } else {
-        echo json_encode(array('loggedin'=>true, 'message'=>__('Login successful, redirecting...')));
+        echo json_encode(array('loggedin'=>true, 'message'=>__('OK...')));
     }
 
     die();
