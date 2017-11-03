@@ -136,6 +136,19 @@ hr {
     line-height: 2em;
 }
 
+.homeprov-logo {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.homeprov-logo img {
+	width: auto;
+}
+
+.homeprov .no-sidebar .content-area {
+
+	border-top: none;
+}
 
 @media screen and (max-width: 545px) {
 	
