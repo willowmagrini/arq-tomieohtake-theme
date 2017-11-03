@@ -27,3 +27,34 @@ if ( ! function_exists( 'coletivo_footer_site_info' ) ) {
     }
 }
 add_action( 'coletivo_footer_site_info', 'coletivo_footer_site_info' );
+
+if ( ! function_exists( 'coletivo_site_header' ) ) {
+
+    function coletivo_site_header(){
+        ?>
+        <header id="masthead" class="site-header" role="banner">
+            <div class="container">
+                <div class="site-branding">
+                	<div class="site-brand-inner has-logo-img no-desc">
+	                	<div class="site-logo-div"><a href="http://institutotomieohtake.org.br/" class="custom-logo-link" rel="home" itemprop="url" target="_blank">
+	                		<img width="326" height="57" src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_logo_menu.png" class="custom-logo" alt="Instituto Tomie Ohtake" itemprop="logo"></a>
+	                	</div>
+                	</div>
+                </div>
+                <!-- .site-branding -->
+
+                <div class="header-right-wrapper">
+                    <a href="#0" id="nav-toggle"><?php _e('Menu', 'coletivo'); ?><span></span></a>
+                    <nav id="site-navigation" class="main-navigation" role="navigation">
+                        <ul class="coletivo-menu">
+                            <?php wp_nav_menu(array('theme_location' => 'primary', 'container' => '', 'items_wrap' => '%3$s')); ?>
+                        </ul>
+                    </nav>
+                    <!-- #site-navigation -->
+                </div>
+            </div>
+        </header><!-- #masthead -->
+        <?php
+    }
+}
+add_action( 'coletivo_site_header', 'coletivo_site_header' );

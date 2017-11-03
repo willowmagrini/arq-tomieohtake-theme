@@ -47,7 +47,9 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6">
+                    <a href="http://institutotomieohtake.org.br/">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_logo_menu.png" style="height: 50px;">
+                    </a>
                         <h4 style="margin-left:69px;">
                             Av.Brigadeiro Faria Lima, 201<br>
                             Pinheiros - São Paulo - SP<br>
