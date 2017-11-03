@@ -69,6 +69,7 @@ add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 
 
 
 function trac_update_userdata( $post_id ) {
+  
 	if ( empty($_POST['acf']) || empty($_POST['acf']['field_59fc6a2a127ad']) || empty($_POST['acf']['field_59fc712d7a1fc']) || false === strpos($post_id, 'user') ) {
     set_transient( "validacao_user_error", 'Verifique os campo obrigatorios', 60 );
     return false;
