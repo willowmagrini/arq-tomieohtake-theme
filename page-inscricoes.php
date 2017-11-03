@@ -1,4 +1,12 @@
-<?php acf_form_head(); ?>
+<?php
+
+
+	if (!is_user_logged_in()) {
+		wp_redirect( get_home_url().'/cadastro-edicao-de-usuarios' );
+
+	}
+
+acf_form_head(); ?>
 <?php
 /**
  *Template Name: Inscicao
