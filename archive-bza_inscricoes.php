@@ -17,8 +17,7 @@ get_header(); ?>
 
 		<div class="page-header">
 			<div class="container">
-				<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
-				<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
+				<h1 class="page-title">Inscrições</h1>
 			</div><!-- container -->
 		</div><!-- page-header -->
 
@@ -33,14 +32,39 @@ get_header(); ?>
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<?php
-							/*
-							 * Include the Post-Format-specific template for the content.
-							 * If you want to override this in a child theme, then include a file
-							 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-							 */
-							get_template_part( 'template-parts/content', 'list' );
-						?>
+
+						<article id="post-<?php the_ID(); ?>" <?php post_class( array('list-article', 'clearfix') ); ?>>
+
+							<div class="list-article-thumb">
+								<a href="<?php echo esc_url( get_permalink() ); ?>">
+
+								</a>
+							</div>
+
+							<div class="list-article-content">
+								<div class="list-article-meta">
+									<?php
+										$categorias=get_the_category();
+										print_r( $categorias[0]->name);
+									 ?>
+								</div>
+								<header class="entry-header">
+									<p>Nome Artistico:<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?></p>
+								</header><!-- .entry-header -->
+								<div class="entry-excerpt">
+									<?php
+										the_excerpt();
+									?>
+									<?php
+										wp_link_pages( array(
+											'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'coletivo' ),
+											'after'  => '</div>',
+										) );
+									?>
+								</div><!-- .entry-content -->
+							</div>
+
+						</article><!-- #post-## -->
 
 					<?php endwhile; ?>
 
@@ -48,7 +72,16 @@ get_header(); ?>
 
 				<?php else : ?>
 
-					<?php get_template_part( 'template-parts/content', 'none' ); ?>
+
+					<section class="no-results not-found">
+
+						<h2><?php esc_html_e( 'Nenhuma inscrição.', 'coletivo' ); ?></h2>
+						<div class="page-content">
+
+								<p><?php esc_html_e( 'Você não está inscrito. Clique <a href="'.get_home_url().'/cadastro-edicao-de-usuarios">aqui para se inscrever</a>', 'coletivo' ); ?></p>
+
+						</div><!-- .page-content -->
+					</section><!-- .no-results -->
 
 				<?php endif; ?>
 
