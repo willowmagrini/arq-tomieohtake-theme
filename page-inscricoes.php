@@ -38,7 +38,9 @@ get_header('inscricao'); ?>
   						'post_type'		=> 'bza_inscricoes',
   						'post_status'		=> 'publish'
   					),
-  					'submit_value'		=> 'Inscrever'
+  					'submit_value'		=> 'Inscrever',
+						'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
+
   				)); ?>
 
 				</main><!-- #main -->

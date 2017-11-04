@@ -81,6 +81,8 @@ function trac_update_userdata( $post_id ) {
 
    // insert the post
    $post_id = wp_insert_post( $post );
+   $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
+   wp_set_post_terms( $post_id, $termo->term_id, 'category' );
 
    // return the new ID
    return $post_id;

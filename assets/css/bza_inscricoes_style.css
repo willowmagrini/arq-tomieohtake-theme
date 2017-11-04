@@ -22,3 +22,23 @@ form#login-user p.status, form#cadastro-user p.status{
     position: fixed;
     z-index: 998;
 }
+.link-voltar{
+  cursor: pointer;
+    background: #03c4eb;
+    border: none;
+    display: inline-block;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: center;
+    padding: 15px 23px 15px 23px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset;
+    margin: 3px 0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
