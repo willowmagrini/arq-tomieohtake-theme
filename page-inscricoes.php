@@ -27,9 +27,12 @@ get_header('inscricao'); ?>
 		<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
-          <?php acf_form(array(
-  					'post_id'		=> 'new_post',
-            'field_groups' => array(8),
+          <?php
+					$user_id=get_current_user_id();
+
+					acf_form(array(
+  					'post_id'		=> 'new_post_'.$user_id,
+            'field_groups' => array(79),
 
   					'new_post'		=> array(
   						'post_type'		=> 'bza_inscricoes',

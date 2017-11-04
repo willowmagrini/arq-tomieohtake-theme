@@ -69,7 +69,22 @@ add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 
 
 
 function trac_update_userdata( $post_id ) {
-  
+
+  if (strpos($post_id, 'new_post_') !== false) {
+    $user=str_replace('new_post_', '', $post_id);
+    $post = array(
+       'post_status'  => 'publish' ,
+       'post_title'  => $_POST['acf']['field_59fca3266ece7'] ,
+       'post_type'  => 'bza_inscricoes' ,
+       'post_author' => $user
+   );
+
+   // insert the post
+   $post_id = wp_insert_post( $post );
+
+   // return the new ID
+   return $post_id;
+  }
 	if ( empty($_POST['acf']) || empty($_POST['acf']['field_59fc6a2a127ad']) || empty($_POST['acf']['field_59fc712d7a1fc']) || false === strpos($post_id, 'user') ) {
     set_transient( "validacao_user_error", 'Verifique os campo obrigatorios', 60 );
     return false;
@@ -104,25 +119,24 @@ function trac_update_userdata( $post_id ) {
       return false;
     }
     else{
+      wp_set_current_user($user_id);
+      wp_set_auth_cookie($user_id);
       delete_transient( "validacao_user_error");
       set_transient( "validacao_user_error", $user_id, 60 );
+      wp_update_user([
+  			'ID' => $user_id,
+  			'first_name' => ( ! empty($_POST['acf']['field_59fbfafd7b7da']) ? $_POST['acf']['field_59fbfafd7b7da'] : '' ),
+  			'role' => 'candidato',
+        'user_url' => $site
+  		]);
+      $post_id='user_'.$user_id;
+      delete_transient( "validacao_user_error");
+
     }
-		// Update name and role
-		wp_update_user([
-			'ID' => $user_id,
-			'first_name' => ( ! empty($_POST['acf']['field_59fbfafd7b7da']) ? $_POST['acf']['field_59fbfafd7b7da'] : '' ),
-			'role' => 'candidato',
-      'user_url' => $site
-		]);
-
-    set_transient( "validacao_user_error", $user_id, 60 );
-
-
 	// Edit the user's email
 	} else {
     $user=str_replace('user_', '', $post_id);
     delete_transient( "validacao_user_error");
-
 		wp_update_user([
 			'ID' => $user,
 			'user_email' => $user_email,
@@ -130,9 +144,12 @@ function trac_update_userdata( $post_id ) {
       'user_url' => $site
 
 		]);
+
 	}
   do_action('acf/save_post', $post_id);
 
+      // You can change home_url() to the specific URL,such as
+  //wp_redirect( 'http://www.wpcoke.com' );
 }
 add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
 
@@ -154,3 +171,23 @@ function logout_redirect($logouturl, $redir)
         return $logouturl . '&amp;redirect_to='.get_permalink();
     }
 add_filter('logout_url', 'logout_redirect', 10, 2);
+
+function hwl_home_pagesize( $query ) {
+    if ( is_admin() || ! $query->is_main_query() )
+        return;
+
+    if ( is_home() ) {
+        // Display only 1 post for the original blog archive
+        $query->set( 'posts_per_page', 1 );
+        return;
+    }
+
+    if ( is_post_type_archive( 'bza_inscricoes' ) ) {
+        $user_id=get_current_user_id();
+
+        // Display 50 posts for a custom post type called 'movie'
+        $query->set( 'author', $user_id );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );

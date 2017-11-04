@@ -28,24 +28,19 @@ get_header('inscricao'); ?>
           <?php
 						if (is_user_logged_in()) {
 							$user_id=get_current_user_id();
+							echo $user_id;
+
 							$args=array(
 		  					'post_id'		=> 'user_'.$user_id,
-		            'field_groups' => array(24),
-		  					'new_post'		=> array(
-		  						'post_type'		=> 'post',
-		  						'post_status'		=> 'publish'
-		  					),
+		            'field_groups' => array(61),
 		  					'submit_value'		=> 'Inscrever'
 	  					);
 						}
 						else{
 							$args=array(
 		  					'post_id'		=> 'new_user',
-		            'field_groups' => array(24),
-		  					'new_post'		=> array(
-		  						'post_type'		=> 'post',
-		  						'post_status'		=> 'publish'
-		  					),
+		            'field_groups' => array(61),
+
 		  					'submit_value'		=> 'Inscrever'
 	  					);
 						}

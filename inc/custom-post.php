@@ -1,17 +1,18 @@
-<?php // Register Custom Post Type
-function bza_inscricoes() {
+<?php
+// Register Custom Post Type
+function inscricoes() {
 
 	$labels = array(
 		'name'                  => _x( 'Inscrições', 'Post Type General Name', 'bza_inscricoes' ),
 		'singular_name'         => _x( 'Inscrição', 'Post Type Singular Name', 'bza_inscricoes' ),
-		'menu_name'             => __( 'Post Types', 'bza_inscricoes' ),
-		'name_admin_bar'        => __( 'Post Type', 'bza_inscricoes' ),
+		'menu_name'             => __( 'Inscrição', 'bza_inscricoes' ),
+		'name_admin_bar'        => __( 'Inscrição', 'bza_inscricoes' ),
 		'archives'              => __( 'Item Archives', 'bza_inscricoes' ),
 		'attributes'            => __( 'Item Attributes', 'bza_inscricoes' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'bza_inscricoes' ),
 		'all_items'             => __( 'All Items', 'bza_inscricoes' ),
 		'add_new_item'          => __( 'Add New Item', 'bza_inscricoes' ),
-		'add_new'               => __( 'Add New', 'bza_inscricoes' ),
+		'add_new'               => __( 'Add new', 'bza_inscricoes' ),
 		'new_item'              => __( 'New Item', 'bza_inscricoes' ),
 		'edit_item'             => __( 'Edit Item', 'bza_inscricoes' ),
 		'update_item'           => __( 'Update Item', 'bza_inscricoes' ),
@@ -32,8 +33,10 @@ function bza_inscricoes() {
 	);
 	$args = array(
 		'label'                 => __( 'Inscrição', 'bza_inscricoes' ),
+		'description'           => __( 'Inscrições de candidatos', 'bza_inscricoes' ),
 		'labels'                => $labels,
-		'supports'              => array( ),
+		'supports'              => array( 'title', 'author', ),
+		'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -45,9 +48,9 @@ function bza_inscricoes() {
 		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
-		'capability_type'       => 'page',
+		'capability_type'       => 'post',
 	);
 	register_post_type( 'bza_inscricoes', $args );
 
 }
-add_action( 'init', 'bza_inscricoes', 0 ); ?>
+add_action( 'init', 'inscricoes', 0 );
