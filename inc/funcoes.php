@@ -30,28 +30,27 @@ if (!is_user_logged_in()) {
 
 // Add a custom user role
 
-$result = add_role( 'candidato', __(
-
-'Candidato' ),
-
-array(
-
-'read' => true, // true allows this capability
-'edit_posts' => true, // Allows user to edit their own posts
-'edit_pages' => false, // Allows user to edit pages
-'edit_others_posts' => false, // Allows user to edit others posts not just their own
-'create_posts' => true, // Allows user to create new posts
-'manage_categories' => true, // Allows user to manage post categories
-'publish_posts' => true, // Allows the user to publish, otherwise posts stays in draft mode
-'edit_themes' => false, // false denies this capability. User can’t edit your theme
-'install_plugins' => false, // User cant add new plugins
-'update_plugin' => false, // User can’t update any plugins
-'update_core' => false // user cant perform core updates
-
-)
-
+$result = add_role( 'candidato', __('Candidato' ),array(
+  'read' => true, // true allows this capability
+  'edit_posts' => true, // Allows user to edit their own posts
+  'edit_pages' => false, // Allows user to edit pages
+  'edit_others_posts' => false, // Allows user to edit others posts not just their own
+  'create_posts' => true, // Allows user to create new posts
+  'manage_categories' => true, // Allows user to manage post categories
+  'publish_posts' => true, // Allows the user to publish, otherwise posts stays in draft mode
+  'edit_themes' => false, // false denies this capability. User can’t edit your theme
+  'install_plugins' => false, // User cant add new plugins
+  'update_plugin' => false, // User can’t update any plugins
+  'update_core' => false, // user cant perform core updates
+  'upload_files' => true, //
+  )
 );
-
+if ( current_user_can('candidato') && !current_user_can('upload_files') )
+    add_action('admin_init', 'allow_contributor_uploads');
+function allow_contributor_uploads() {
+    $contributor = get_role('candidato');
+    $contributor->add_cap('upload_files');
+}
 /**
  * Add / Edit users
  */
@@ -69,7 +68,6 @@ add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 
 
 
 function trac_update_userdata( $post_id ) {
-
   if (strpos($post_id, 'new_post_') !== false) {
     $user=str_replace('new_post_', '', $post_id);
     $post = array(
@@ -87,15 +85,21 @@ function trac_update_userdata( $post_id ) {
    // return the new ID
    return $post_id;
   }
-	if ( empty($_POST['acf']) || empty($_POST['acf']['field_59fc6a2a127ad']) || empty($_POST['acf']['field_59fc712d7a1fc']) || false === strpos($post_id, 'user') ) {
-    set_transient( "validacao_user_error", 'Verifique os campo obrigatorios', 60 );
-    return false;
+  else  if (strpos($post_id, 'post_') !== false) {
+    $post_id=str_replace('post_', '', $post_id);
+    do_action('acf/save_post', $post_id);
+    return $post_id;
+
   }
+
   $user_name= $_POST['acf']['field_59fc6a2a127ad'];
 	$user_email = $_POST['acf']['field_59fc712d7a1fc'];
+  $senha=$_POST['acf']['acf-field_59fe003f256d9'];
+  $senha_conf=$_POST['acf']['acf-field_59fe0082256da'];
   $nome_completo= $_POST['acf']['field_59fbfafd7b7da'];
   $data_nasc = $_POST['acf']['field_59fbfb077b7db'];
   $site = $_POST['acf']['field_59fbfbae7b7e1'];
+  $password= $_POST['acf']['field_59fe003f256d9'];
   // set_transient( "post_transient", $_POST, 60 );
 	// Create a new user
 	if ( 'new_user' === $post_id ) {
@@ -112,9 +116,10 @@ function trac_update_userdata( $post_id ) {
 		// Create a password
 		$length = 13;
 		$include_standard_special_chars = false;
+
 		$random_password = wp_generate_password( $length, $include_standard_special_chars );
 		// Create the user, use email as username
-		$user_id = wp_create_user( $user_name, $random_password, $user_email );
+		$user_id = wp_create_user( $user_name, $password, $user_email );
 
     if (!is_int($user_id)){
       set_transient( "validacao_user_error", $user_id, 60 );
@@ -133,10 +138,13 @@ function trac_update_userdata( $post_id ) {
   		]);
       $post_id='user_'.$user_id;
       delete_transient( "validacao_user_error");
+      // do_action('acf/save_post', $post_id);
+      // wp_redirect( get_home_url().'/inscricoes' );
 
     }
 	// Edit the user's email
-	} else {
+	}
+  else {
     $user=str_replace('user_', '', $post_id);
     delete_transient( "validacao_user_error");
 		wp_update_user([
@@ -146,7 +154,10 @@ function trac_update_userdata( $post_id ) {
       'user_url' => $site
 
 		]);
-
+    wp_set_password( $password, $user );
+    wp_set_auth_cookie($user);
+    wp_set_current_user($user);
+    do_action('wp_login', $user_name, $user);
 	}
   do_action('acf/save_post', $post_id);
 
@@ -155,6 +166,14 @@ function trac_update_userdata( $post_id ) {
 }
 add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
 
+function my_acf_save_post( $post_id )
+{
+    if (strpos($post_id, 'user_') !== false) {
+        wp_redirect(get_home_url().'/inscricao'); exit;
+    }
+
+}
+add_action('acf/save_post', 'my_acf_save_post', 20);
 
 if(!function_exists('log_it')){
  function log_it( $message ) {
@@ -174,22 +193,136 @@ function logout_redirect($logouturl, $redir)
     }
 add_filter('logout_url', 'logout_redirect', 10, 2);
 
-function hwl_home_pagesize( $query ) {
+
+
+function restringe_candidato( $query ) {
     if ( is_admin() || ! $query->is_main_query() )
         return;
-
     if ( is_home() ) {
         // Display only 1 post for the original blog archive
-        $query->set( 'posts_per_page', 1 );
         return;
     }
-
     if ( is_post_type_archive( 'bza_inscricoes' ) ) {
         $user_id=get_current_user_id();
-
         // Display 50 posts for a custom post type called 'movie'
         $query->set( 'author', $user_id );
         return;
     }
 }
-add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
+add_action( 'pre_get_posts', 'restringe_candidato', 1 );
+
+function hasWhiteSpace($string) {
+  if ( preg_match('/\s/',$string) ){
+    return true;
+  }
+  else {
+    return false;
+  }
+
+}
+
+
+
+
+//FORM IMAGE VALIDATION
+add_filter('acf/validate_value/type=password', 'my_acf_validate_value', 10, 4);
+function my_acf_validate_value( $valid, $value, $field, $input ){
+	// bail early if value is already invalid
+	if( !$valid ) {
+		return $valid;
+	}
+  $value_1 = $_POST['acf']['field_59fe003f256d9'];
+  $value_2 = $_POST['acf']['field_59fe0082256da'];
+	if ($value_1 != $value_2 )  {
+    $valid = 'As senhas não são iguais';
+  }
+	// return
+	return $valid;
+
+}
+add_filter('acf/validate_value/key=field_59fc6a2a127ad', 'username_validation', 10, 4);
+function username_validation( $valid, $value, $field, $input ){
+  if( !$valid ) {
+    return $valid;
+  }
+  // bail early if value is already invalid
+  if (!validate_username( $value ) || hasWhiteSpace($value)) {
+    $valid = "Nome de usuário inválido";
+    return $valid;
+  }
+  if (username_exists( $value )) {
+    $valid = "Nome já existe, por favor faça login <a class='show_login_link' href='#'> Aqui </a>";
+    return $valid;
+  }
+
+	// return
+	return $valid;
+
+}
+
+add_filter('acf/validate_value/key=field_59fc712d7a1fc', 'email_validation', 10, 4);
+function email_validation( $valid, $value, $field, $input ){
+  if( !$valid ) {
+    return $valid;
+  }
+  if ( email_exists( $value ) ) {
+    $valid = "E-mail ja cadastrado, por favor faça login <a class='show_login_link' href='#'> Aqui </a> ";
+    return $valid;
+  }
+	// return
+	return $valid;
+
+}
+
+// adiciona login/logout
+add_filter( 'wp_nav_menu_items', 'your_custom_menu_item', 10, 2 );
+function your_custom_menu_item ( $items, $args ) {
+    if ($args->theme_location == 'primary') {
+      if (is_user_logged_in()) {
+         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.get_home_url( ).'/cadastro-edicao-de-usuarios/">Candidato</a></li>';
+      }
+      else {
+        $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button show_login_link" id="show_login" href="">Login</a></li>';
+      }
+    }
+    return $items;
+}
+
+// restringe midia
+add_action('pre_get_posts','users_own_attachments');
+function users_own_attachments( $wp_query_obj ) {
+
+    global $current_user, $pagenow;
+
+    $is_attachment_request = ($wp_query_obj->get('post_type')=='attachment');
+
+    if( !$is_attachment_request )
+        return;
+
+    if( !is_a( $current_user, 'WP_User') )
+        return;
+
+    if( !in_array( $pagenow, array( 'upload.php', 'admin-ajax.php' ) ) )
+        return;
+
+    if( !current_user_can('delete_pages') )
+        $wp_query_obj->set('author', $current_user->ID );
+
+    return;
+}
+
+add_action( 'init', 'blockusers_init' );
+function blockusers_init() {
+  if ( is_admin() && ! current_user_can( 'administrator' ) &&
+    ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+    wp_redirect( home_url() );
+    exit;
+  }
+}
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+  if (!current_user_can('administrator') && !is_admin()) {
+    show_admin_bar(false);
+  }
+}

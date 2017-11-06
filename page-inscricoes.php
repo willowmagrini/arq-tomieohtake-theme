@@ -1,9 +1,32 @@
 <?php
 
-
 	if (!is_user_logged_in()) {
 		wp_redirect( get_home_url().'/cadastro-edicao-de-usuarios' );
 
+	}
+
+	$current_user = wp_get_current_user();
+
+	$user_id= $current_user->ID ;
+	$user=$current_user->user_login;
+	$args = array(
+		'post_type'              => array( 'bza_inscricoes' ),
+		'author'            => $user_id,
+		'tax_query' => array(
+		array(
+			'taxonomy' => 'category',
+			'field'    => 'name',
+			'terms'    => 'Prêmio EDP nas Artes',
+		),
+	),
+	);
+
+	// The Query
+	$query = new WP_Query( $args );
+	if($query->post_count != 0 ){
+		$post=$query->posts[0];
+		$link=get_permalink($post);
+		wp_redirect( $link );
 	}
 
 acf_form_head(); ?>
@@ -28,7 +51,6 @@ get_header('inscricao'); ?>
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
           <?php
-					$user_id=get_current_user_id();
 
 					acf_form(array(
   					'post_id'		=> 'new_post_'.$user_id,

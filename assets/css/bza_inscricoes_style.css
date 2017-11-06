@@ -13,7 +13,12 @@ form#login-user, form#cadastro-user{
 form#login-user p.status, form#cadastro-user p.status{
     display: none;
 }
+form#login-user a.close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
 
+}
 .login_overlay{
     height: 100%;
     width: 100%;
@@ -41,4 +46,7 @@ form#login-user p.status, form#cadastro-user p.status{
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
+}
+.logged-in .acf-field-59fc6a2a127ad {
+  display:none;
 }

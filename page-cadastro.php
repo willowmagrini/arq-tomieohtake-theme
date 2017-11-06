@@ -16,34 +16,37 @@ get_header('inscricao'); ?>
 		</div>
 		<?php endif;?>
 		<div id="content-inside" class="container no-sidebar">
-		<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
+		<h2 class="fullheader-title">
+			<?php
+				if (is_user_logged_in()) {
+					$current_user = wp_get_current_user();
+					$user_id= 'user_'.$current_user->ID ;
+					$user=$current_user->user_login;
+					$post_id = $user_id;
+					$submit = 'Atualizar';
+					echo $submit." candidato: ".$user;
+				}
+				else{
+					$post_id = 'new_user';
+					$submit = 'Inscrever';
+					echo "Cadastrar";
+
+				}
+				?>
+		</h2>
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 					<?php $msg = get_transient( "validacao_user_error" );
 						// echo 'MSG: '.$msg;
 						$post_acf = get_transient( "post_transient" );
 						print_r($msg);
-
 					 ?>
           <?php
-						if (is_user_logged_in()) {
-							$user_id=get_current_user_id();
-							echo $user_id;
-
 							$args=array(
-		  					'post_id'		=> 'user_'.$user_id,
+		  					'post_id'		=> $post_id,
 		            'field_groups' => array(61),
-		  					'submit_value'		=> 'Inscrever'
+		  					'submit_value'		=> $submit
 	  					);
-						}
-						else{
-							$args=array(
-		  					'post_id'		=> 'new_user',
-		            'field_groups' => array(61),
-
-		  					'submit_value'		=> 'Inscrever'
-	  					);
-						}
 						acf_form($args); ?>
 
 				</main><!-- #main -->
