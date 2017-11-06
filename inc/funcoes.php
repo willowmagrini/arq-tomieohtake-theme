@@ -282,7 +282,7 @@ function your_custom_menu_item ( $items, $args ) {
          $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.get_home_url( ).'/cadastro-edicao-de-usuarios/">Candidato</a></li>';
       }
       else {
-        $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button show_login_link" id="show_login" href="">Login</a></li>';
+        $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button show_login_link btn btn-primary" id="show_login" href="">Login</a></li>';
       }
     }
     return $items;
