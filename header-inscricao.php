@@ -21,7 +21,7 @@
 
 <body <?php body_class(); ?>>
   <form id="login-user" action="login" method="post">
-        <a id="register-user-link" href="#register-user">Ainda não tem cadastro?</a>
+        <a id="register-user-link" href="<?php echo get_home_url() ?>/cadastro-edicao-de-usuarios/">Ainda não tem cadastro?</a>
        <h1>Entrar</h1>
        <p class="status"></p>
        <label for="username">Nome de usuário</label>
@@ -30,12 +30,12 @@
        <input id="password" type="password" name="password">
        <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Perdeu a senha?</a>
        <input class="submit_button" type="submit" value="Login" name="submit">
-       <a class="close" href="">(fechar)</a>
+       <a class="close" href="">X</a>
        <?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
    </form>
 
 
-   
+
    <form id="cadastro-user" class="form-horizontal registraion-form" role="form">
      <a id="login-user-link" href="#register-user">Já tenho cadastro?</a>
 
@@ -71,11 +71,7 @@
 
     <input type="submit" class="btn btn-primary" id="btn-new-user" value="Register" />
   </form>
-   <?php if (is_user_logged_in()) { ?>
-    <a class="login_button" href="<?php echo wp_logout_url( home_url() ); ?>">Logout</a>
-<?php } else { ?>
-    <a class="login_button" id="show_login" href="">Login</a>
-<?php } ?>
+
 <?php do_action( 'coletivo_before_site_star' ); ?>
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'coletivo' ); ?></a>

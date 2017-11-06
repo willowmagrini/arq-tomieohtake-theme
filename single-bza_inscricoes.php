@@ -6,8 +6,19 @@
  *
  * @package coletivo
  */
+ global $current_user;
+ get_currentuserinfo();
+ if (!is_user_logged_in()) {
+   wp_redirect( get_home_url().'/cadastro-edicao-de-usuarios' );
 
-get_header(); ?>
+ }
+ elseif ($current_user->ID != $post->post_author)  {
+		wp_redirect( get_home_url() );
+	}
+?>
+ acf_form_head();
+
+ get_header('inscricao'); ?>
 
 
   <div id="content" class="site-content">
@@ -33,17 +44,12 @@ get_header(); ?>
          ?>
 
           <?php
-					$user_id=get_the_ID();
+					$post_id=get_the_ID();
           // echo $user_id;
 
 					acf_form(array(
-  					'post_id'		=> $user_id,
+  					'post_id'		=> 'post_'.$post_id,
             'field_groups' => array(79),
-
-  					'new_post'		=> array(
-  						'post_type'		=> 'bza_inscricoes',
-  						'post_status'		=> 'publish'
-  					),
   					'submit_value'		=> 'Atualizar',
             'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
 
