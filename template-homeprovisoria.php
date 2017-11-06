@@ -6,7 +6,7 @@
  * @package coletivo
  */
 
-get_header(); ?>
+get_header('inscricao'); ?>
 
 	<div id="content" class="site-content homeprov">
 		<div id="content-inside" class="container no-sidebar">
