@@ -58,3 +58,7 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
     }
 }
 add_action( 'coletivo_site_header', 'coletivo_site_header' );
+//plugin
+require get_stylesheet_directory() . '/inc/custom-post.php';
+require get_stylesheet_directory() . '/inc/ajax_functions.php';
+require get_stylesheet_directory() . '/inc/funcoes.php';

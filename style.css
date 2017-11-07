@@ -204,7 +204,7 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
 }
 
 @media screen and (max-width: 545px) {
-	
+
 	.section-contact h2.section-title {
 	font-size: 1.6em;
 	}
