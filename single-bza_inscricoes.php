@@ -18,7 +18,6 @@
 
  get_header('inscricao'); ?>
 
-
   <div id="content" class="site-content">
 
     <div class="page-header">
@@ -57,7 +56,8 @@
 
               <!-- <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a> -->
         			</main><!-- #main -->
-        		</div><!--#content-inside -->
-        	</div><!-- #content -->
+            </div><!-- #primary -->
+      		</div><!--#content-inside -->
+      	</div><!-- #content -->
 
-        <?php get_footer(); ?>
+      <?php get_footer(); ?>

@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
   if ($('body').hasClass('logged-in')) {
     $('#acf-field_59fc6a2a127ad').attr('disabled', 'disabled')
-    $('#acf-field_59fc712d7a1fc').attr('disabled', 'disabled')
+    // $('#acf-field_59fc712d7a1fc').attr('disabled', 'disabled')
 
   }
     $('#register-user').on('click', function(e){
