@@ -7,7 +7,6 @@
  * @package coletivo
  */
  global $current_user;
- get_currentuserinfo();
  if (!is_user_logged_in()) {
    wp_redirect( get_home_url().'/cadastro-edicao-de-usuarios' );
 
@@ -15,7 +14,6 @@
  elseif ($current_user->ID != $post->post_author)  {
 		wp_redirect( get_home_url() );
 	}
-?>
  acf_form_head();
 
  get_header('inscricao'); ?>
@@ -58,7 +56,7 @@
 
 				<?php endwhile; // End of the loop. ?>
 
-              <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a>
+              <!-- <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a> -->
         			</main><!-- #main -->
         		</div><!--#content-inside -->
         	</div><!-- #content -->
