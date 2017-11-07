@@ -31,7 +31,7 @@
       <?php echo coletivo_breadcrumb(); ?>
     <?php endif; ?>
 
-    <div id="content-inside" class="container">
+    <div id="content-inside" class="container container-form">
       <main id="main" class="site-main" role="main">
 				<?php while ( have_posts() ) : the_post();
 
@@ -52,8 +52,7 @@
             'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
 
   				)); ?>
-
-
+        <br />
 				<?php endwhile; // End of the loop. ?>
 
               <!-- <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a> -->

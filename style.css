@@ -176,8 +176,18 @@ hr {
 }
 
 input[type="reset"], input[type="submit"], input[type="submit"] {
-	font-family: "Open Sans Condensed", sans-serif;
-	font-size: 17px;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 17px;
+}
+
+.acf-field p.description {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 1.2em;
+}
+
+.acf-field .acf-label label {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 1.2em;
 }
 
 #login-user #register-user-link {
@@ -203,6 +213,60 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     width: 100%;
 }
 
+.container-form {
+    padding-right: 4.9375rem !important;
+    padding-left: 4.9375rem !important;
+}
+
+.page-template-page-inscricoes .page-header .container {
+    padding-right: 4.9375rem !important;
+    padding-left: 4.9375rem !important;
+}
+
+.bza_inscricoes-template-default .page-header .container {
+    padding-right: 4.9375rem !important;
+    padding-left: 4.9375rem !important;
+}
+
+#honeypot {
+    display:none;
+}
+
+#user-navigation {
+    clear: both;
+    display: initial;
+    background: #eee;
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
+#user-navigation .user-menu {
+    line-height: 30px;
+    float: right;
+    background: #CCC;
+    padding: 0 30px;
+    margin-bottom: -30px;
+    min-width: 33%;
+    border-radius: 0 0 6px 6px;
+    margin-right: 4em;
+}
+
+#user-menu-inscricao a, #user-menu-cadastro a {
+    color: #FFF;
+    background: #eb008b;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 2px 13px;
+    font-size: 1em;
+    line-height: 20px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+#user-menu-inscricao a {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 545px) {
 
 	.section-contact h2.section-title {
@@ -217,5 +281,10 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     text-indent: -9999999px;
     display: table-column;
 	}
+
+    .container-form {
+    padding-right: .9375rem !important;
+    padding-left: .9375rem !important;
+    }
 
 }
