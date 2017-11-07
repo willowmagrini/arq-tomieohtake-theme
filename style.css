@@ -22,8 +22,16 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
+button, label {
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
 .entry-header .entry-title {
     font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.page-header {
+    margin-bottom: 30px;
 }
 
 hr {
@@ -66,6 +74,14 @@ hr {
     letter-spacing: 0px;
 }
 
+#inscreva-se, #logout-botao {
+    color: #FFF;
+    padding-right: 17px;
+    margin-top: 12px;
+    margin-left: 2em;
+    text-transform: uppercase;
+}
+
 .btn, .btn-lg {
     font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -100,6 +116,7 @@ hr {
 }
 .footer-logos .row.logos {
 	padding: 20px 0px;
+	text-align: center;
 }
 
 .footer-logos h3 {
@@ -136,6 +153,55 @@ hr {
     line-height: 2em;
 }
 
+.homeprov-logo {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.homeprov-logo img {
+	width: auto;
+}
+
+.homeprov .no-sidebar .content-area {
+
+	border-top: none;
+}
+
+.page-template-page-preliminar h1.fullheader-title {
+    text-align: center;
+}
+
+.page-template-page-preliminar h2.fullheader-title {
+    padding-left: 0;
+}
+
+input[type="reset"], input[type="submit"], input[type="submit"] {
+	font-family: "Open Sans Condensed", sans-serif;
+	font-size: 17px;
+}
+
+#login-user #register-user-link {
+	display: none;
+}
+
+#login-user a.lost {
+    display: block;
+    clear: both;
+    text-align: right;
+    margin-top: 10px;
+}
+
+#login-user label {
+    font-size: 16px;
+    font-size: 1.175rem;
+    clear: both;
+    display: block;
+    margin-top: 10px;
+}
+
+#login-user input#username, #login-user input#password {
+    width: 100%;
+}
 
 @media screen and (max-width: 545px) {
 

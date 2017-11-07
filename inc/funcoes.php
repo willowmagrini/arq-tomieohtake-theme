@@ -70,6 +70,7 @@ add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 
 function trac_update_userdata( $post_id ) {
   if (strpos($post_id, 'new_post_') !== false) {
     $user=str_replace('new_post_', '', $post_id);
+    
     $post = array(
        'post_status'  => 'publish' ,
        'post_title'  => $_POST['acf']['field_59fca3266ece7'] ,
