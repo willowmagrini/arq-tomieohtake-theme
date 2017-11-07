@@ -14,7 +14,7 @@ get_header('inscricao'); ?>
 		 <img src="<?php echo $img[0];?>"/>
 		</div>
 		<?php endif;?>
-		<div id="content-inside" class="container no-sidebar">
+		<div id="content-inside" class="container container-form no-sidebar">
 		<h2 class="fullheader-title">
 			<?php
 

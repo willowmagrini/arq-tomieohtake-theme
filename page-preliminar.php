@@ -19,6 +19,7 @@ get_header('inscricao'); ?>
 		</div>
 		<?php endif;?>
 		<div id="content-inside" class="container no-sidebar">
+		<br />
 		<h1 class="fullheader-title">
 			Inscreva-se
 		</h1>
@@ -34,6 +35,7 @@ get_header('inscricao'); ?>
 
 					</div>
 					<div class="col-md-6" id="cadastro-preliminar">
+					<h2 class="fullheader-title">Não possui? Cadastre-se!</h2>
 						<?php
 								$args=array(
 									'post_id'		=> 'new_user',
