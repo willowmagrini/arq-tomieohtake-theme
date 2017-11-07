@@ -292,7 +292,20 @@ function username_validation( $valid, $value, $field, $input ){
 	return $valid;
 
 }
+add_filter('acf/validate_value/key=field_59fbfb077b7db', 'date_validation', 10, 4);
+function date_validation( $valid, $value, $field, $input ){
+  $data_final=date("Ymd", strtotime("-18 year"));
+  $data_inicial= date("Ymd", strtotime("-27 year"));
+  if(strtotime($value) > strtotime(date("Ymd") )){
+    return 'Por favor escolha uma data no passado.';
+  }
+  elseif (strtotime($value) > strtotime($data_final ) || strtotime($value) < strtotime($data_inicial )){
 
+    return 'A inscrição é valida para jovens artistas de 18 a 27 anos.';
+  }
+  return $valid;
+
+}
 add_filter('acf/validate_value/key=field_59fc712d7a1fc', 'email_validation', 10, 4);
 function email_validation( $valid, $value, $field, $input ){
   if( !$valid ) {
