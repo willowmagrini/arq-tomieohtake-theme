@@ -68,34 +68,9 @@ get_header(); ?>
 
 					<?php endwhile; ?>
 
-					<?php the_posts_navigation();
+					<?php the_posts_navigation(); ?>
 
-
-                    $args = array(
-                     'numberposts' => 1,
-                     'orderby' => 'post_date',
-                     'order' => 'DESC',
-                     'post_type' => 'bza_inscricoes',
-                     'post_status' => 'publish',
-                     'suppress_filters' => true
-                    );
-                    $novos = wp_get_recent_posts( $args, ARRAY_A );
-                    print_r( isset($novos[0]));
-                    ?>
-
-				<?php else :
-
-          $args = array(
-           'numberposts' => 1,
-           'orderby' => 'post_date',
-           'order' => 'DESC',
-           'post_type' => 'bza_inscricoes',
-           'post_status' => 'publish',
-           'suppress_filters' => true
-          );
-          $novos = wp_get_recent_posts( $args, ARRAY_A );
-          print_r( isset($novos[0]));
-          ?>
+				<?php else : ?>
 
 
 					<section class="no-results not-found">

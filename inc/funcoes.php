@@ -352,3 +352,16 @@ function remove_admin_bar() {
     show_admin_bar(false);
   }
 }
+
+
+// get full Name
+function km_get_users_name( $user_id = null ) {
+	$user_info = $user_id ? new WP_User( $user_id ) : wp_get_current_user();
+	if ( $user_info->first_name ) {
+		if ( $user_info->last_name ) {
+			return $user_info->first_name . ' ' . $user_info->last_name;
+		}
+		return $user_info->first_name;
+	}
+	return $user_info->display_name;
+}
