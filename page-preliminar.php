@@ -42,7 +42,8 @@ get_header('inscricao'); ?>
 
 									'submit_value'		=> 'Próximo passo'
 								);
-							acf_form($args); ?>
+							acf_form($args);
+							?>
 					</div>
 
 

@@ -66,33 +66,63 @@ function trac_load_value_user_email( $value, $post_id, $field ) {
 add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 3 );
 
 
+// começa formularios de cadastro
 
 function trac_update_userdata( $post_id ) {
+
+  // Nova inscrição
   if (strpos($post_id, 'new_post_') !== false) {
+    $args = array(
+     'numberposts' => 1,
+     'orderby' => 'post_date',
+     'order' => 'DESC',
+     'post_type' => 'bza_inscricoes',
+     'post_status' => 'publish',
+     'suppress_filters' => true
+    );
+    $novos = wp_get_recent_posts( $args, ARRAY_A );
+   //  print_r( $novos[0]['ID']);
+
+   if (isset($novos[0])){
+     $titulo=get_the_title( $novos[0]['ID']);
+     $titulo + 0;
+     $titulo++;
+
+   }
+   else{
+     $titulo='1';
+   }
+
     $user=str_replace('new_post_', '', $post_id);
-    
     $post = array(
        'post_status'  => 'publish' ,
-       'post_title'  => $_POST['acf']['field_59fca3266ece7'] ,
+       'post_title'  => $titulo ,
        'post_type'  => 'bza_inscricoes' ,
        'post_author' => $user
-   );
+     );
 
-   // insert the post
-   $post_id = wp_insert_post( $post );
-   $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
-   wp_set_post_terms( $post_id, $termo->term_id, 'category' );
+     // insert the post
+     $post_id = wp_insert_post( $post );
 
-   // return the new ID
-   return $post_id;
+    //  adiciona a categoria (qual o edital/concurso)
+     $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
+     wp_set_post_terms( $post_id, $termo->term_id, 'category' );
+
+     //adiciona o id_inscricao como meta
+
+     // return the new ID
+     return $post_id;
   }
+
+  // atualização de inscrição
   else  if (strpos($post_id, 'post_') !== false) {
     $post_id=str_replace('post_', '', $post_id);
     do_action('acf/save_post', $post_id);
     return $post_id;
-
   }
 
+
+// cadastro de candidatoas
   // $user_name= $_POST['acf']['field_59fc6a2a127ad'];
 	$user_email = $_POST['acf']['field_59fc712d7a1fc'];
   $senha=$_POST['acf']['acf-field_59fe003f256d9'];
@@ -134,6 +164,7 @@ function trac_update_userdata( $post_id ) {
     }
 	// Edit the user's email
 	}
+  // atualizacao de candidatoas
   else {
     $user=str_replace('user_', '', $post_id);
 		wp_update_user([
@@ -156,6 +187,10 @@ function trac_update_userdata( $post_id ) {
   //wp_redirect( 'http://www.wpcoke.com' );
 }
 add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
+// acaba formularios de cadastro
+
+
+
 
 function my_acf_save_post( $post_id )
 {
