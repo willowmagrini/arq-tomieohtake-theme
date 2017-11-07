@@ -325,7 +325,7 @@ add_filter( 'wp_nav_menu_items', 'your_custom_menu_item', 10, 2 );
 function your_custom_menu_item ( $items, $args ) {
     if ($args->theme_location == 'primary') {
       if (is_user_logged_in()) {
-         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button btn btn-theme-primary btn-lg" id="logout-botao" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li>';
+         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button btn btn-theme-primary btn-lg" id="logout-botao" href="'.wp_logout_url( get_permalink() ).'">Sair</a></li>';
       }
       else {
         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class=" btn btn-theme-primary btn-lg" id="inscreva-se" href="'.get_home_url().'/inscreva-se">Inscreva-se</a></li>';
