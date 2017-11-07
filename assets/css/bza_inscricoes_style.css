@@ -1,0 +1,52 @@
+form#login-user, form#cadastro-user{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 200px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 999;
+    left: 50%;
+    margin-left: -200px;
+}
+
+form#login-user p.status, form#cadastro-user p.status{
+    display: none;
+}
+form#login-user a.close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+}
+.login_overlay{
+    height: 100%;
+    width: 100%;
+    background-color: #F6F6F6;
+    opacity: 0.9;
+    position: fixed;
+    z-index: 998;
+}
+.link-voltar{
+  cursor: pointer;
+    background: #03c4eb;
+    border: none;
+    display: inline-block;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: center;
+    padding: 15px 23px 15px 23px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset;
+    margin: 3px 0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+.logged-in .acf-field-59fc6a2a127ad {
+  display:none;
+}
