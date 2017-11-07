@@ -41,10 +41,13 @@ get_header('inscricao'); ?>
 									'post_id'		=> 'new_user',
 									// 'field_groups' => array(61),
 									'fields' => array('field_59fc6a2a127ad','field_59fc712d7a1fc','field_59fe003f256d9','field_59fe0082256da'),
+									'html_after_fields'	=> '<input type="text" id="honeypot" name="honeypot" autocomplete="off">',
 
 									'submit_value'		=> 'Próximo passo'
 								);
-							acf_form($args); ?>
+							acf_form($args);
+							
+							?>
 					</div>
 
 
