@@ -92,7 +92,7 @@ function trac_update_userdata( $post_id ) {
 
   }
 
-  $user_name= $_POST['acf']['field_59fc6a2a127ad'];
+  // $user_name= $_POST['acf']['field_59fc6a2a127ad'];
 	$user_email = $_POST['acf']['field_59fc712d7a1fc'];
   $senha=$_POST['acf']['acf-field_59fe003f256d9'];
   $senha_conf=$_POST['acf']['acf-field_59fe0082256da'];
@@ -103,24 +103,14 @@ function trac_update_userdata( $post_id ) {
   // set_transient( "post_transient", $_POST, 60 );
 	// Create a new user
 	if ( 'new_user' === $post_id ) {
-    if (username_exists($user_name)) {
-      set_transient( "validacao_user_error", 'usuario ja existe', 60 );
-      return false;
-    }
-		// If email already exists, this should be part of validation or at least return an error...
-		if ( email_exists( $user_email ) ) {
-      set_transient( "validacao_user_error", 'email ja existe', 60 );
-      return false;
-    }
+    set_transient( "status_inscricao", 'preliminar', 60 );
 
 		// Create a password
 		$length = 13;
 		$include_standard_special_chars = false;
-
 		$random_password = wp_generate_password( $length, $include_standard_special_chars );
 		// Create the user, use email as username
-		$user_id = wp_create_user( $user_name, $password, $user_email );
-
+		$user_id = wp_create_user( $user_email, $password, $user_email );
     if (!is_int($user_id)){
       set_transient( "validacao_user_error", $user_id, 60 );
       return false;
@@ -128,16 +118,15 @@ function trac_update_userdata( $post_id ) {
     else{
       wp_set_current_user($user_id);
       wp_set_auth_cookie($user_id);
-      delete_transient( "validacao_user_error");
-      set_transient( "validacao_user_error", $user_id, 60 );
       wp_update_user([
   			'ID' => $user_id,
   			'first_name' => ( ! empty($_POST['acf']['field_59fbfafd7b7da']) ? $_POST['acf']['field_59fbfafd7b7da'] : '' ),
   			'role' => 'candidato',
         'user_url' => $site
   		]);
+
+      add_user_meta( $user_id, '_etapa_cadastro', 'preliminar');
       $post_id='user_'.$user_id;
-      delete_transient( "validacao_user_error");
       // do_action('acf/save_post', $post_id);
       // wp_redirect( get_home_url().'/inscricoes' );
 
@@ -146,7 +135,6 @@ function trac_update_userdata( $post_id ) {
 	}
   else {
     $user=str_replace('user_', '', $post_id);
-    delete_transient( "validacao_user_error");
 		wp_update_user([
 			'ID' => $user,
 			'user_email' => $user_email,
@@ -157,7 +145,9 @@ function trac_update_userdata( $post_id ) {
     wp_set_password( $password, $user );
     wp_set_auth_cookie($user);
     wp_set_current_user($user);
-    do_action('wp_login', $user_name, $user);
+    do_action('wp_login', $user_email, $user);
+    delete_user_meta($user, '_etapa_cadastro');
+
 	}
   do_action('acf/save_post', $post_id);
 
@@ -168,8 +158,8 @@ add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
 
 function my_acf_save_post( $post_id )
 {
-    if (strpos($post_id, 'user_') !== false) {
-        wp_redirect(get_home_url().'/inscricao'); exit;
+    if (strpos($post_id, 'user_') !== false && isset($_POST['acf']['field_59fbfafd7b7da'])) {
+      wp_redirect(get_home_url().'/inscricao'); exit;
     }
 
 }
@@ -189,7 +179,7 @@ if(!function_exists('log_it')){
 
 function logout_redirect($logouturl, $redir)
     {
-        return $logouturl . '&amp;redirect_to='.get_permalink();
+        return $logouturl . '&amp;redirect_to='.get_home_url();
     }
 add_filter('logout_url', 'logout_redirect', 10, 2);
 
@@ -279,10 +269,10 @@ add_filter( 'wp_nav_menu_items', 'your_custom_menu_item', 10, 2 );
 function your_custom_menu_item ( $items, $args ) {
     if ($args->theme_location == 'primary') {
       if (is_user_logged_in()) {
-         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button" href="'.get_home_url( ).'/cadastro-edicao-de-usuarios/">Candidato</a></li>';
+         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button btn btn-theme-primary btn-lg" id="logout-botao" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li>';
       }
       else {
-        $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button show_login_link" id="show_login" href="">Login</a></li>';
+        $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class=" btn btn-theme-primary btn-lg" id="inscreva-se" href="'.get_home_url().'/inscreva-se">Inscreva-se</a></li>';
       }
     }
     return $items;

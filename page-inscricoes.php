@@ -32,7 +32,7 @@
 acf_form_head(); ?>
 <?php
 /**
- *Template Name: Inscicao
+ *Template Name: Inscricao
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
  * @package coletivo

@@ -6,7 +6,6 @@
  *
  * @package coletivo
  */
-
 get_header('inscricao'); ?>
 
 	<div id="content" class="site-content">
@@ -18,19 +17,26 @@ get_header('inscricao'); ?>
 		<div id="content-inside" class="container no-sidebar">
 		<h2 class="fullheader-title">
 			<?php
+
 				if (is_user_logged_in()) {
 					$current_user = wp_get_current_user();
 					$user_id= 'user_'.$current_user->ID ;
 					$user=$current_user->user_login;
 					$post_id = $user_id;
-					$submit = 'Atualizar';
-					echo $submit." candidato: ".$user;
+					if (get_user_meta($current_user->ID, '_etapa_cadastro',true)=='preliminar') {
+						echo "Finalizar cadastro";
+						$submit = "Finalizar cadastro";
+					}
+					else{
+						echo "Atualizar cadastro";
+						$submit = "Atualizar cadastro";
+					}
 				}
 				else{
 					$post_id = 'new_user';
-					$submit = 'Inscrever';
-					echo "Cadastrar";
-
+					$submit = 'Finalizar cadastro';
+					echo "Finalizar cadastro";
+					$submit = "Finalizar cadastro";
 				}
 				?>
 		</h2>
