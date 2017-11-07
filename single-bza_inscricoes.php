@@ -19,20 +19,11 @@
  get_header('inscricao'); ?>
 
 
-  <div id="content" class="site-content">
-
-    <div class="page-header">
-      <div class="container">
-        <h1 class="page-title">Inscrição</h1>
-      </div><!-- container -->
-    </div><!-- page-header -->
-
-    <?php if ( function_exists( 'coletivo_breadcrumb' ) ) : ?>
-      <?php echo coletivo_breadcrumb(); ?>
-    <?php endif; ?>
-
-    <div id="content-inside" class="container">
-      <main id="main" class="site-main" role="main">
+ 	<div id="content" class="site-content">
+ 		<div id="content-inside" class="container no-sidebar">
+      <h2>Inscrição</h2>
+ 			<div id="primary" class="content-area">
+ 				<main id="main" class="site-main" role="main">
 				<?php while ( have_posts() ) : the_post();
 
         ?>
@@ -58,7 +49,8 @@
 
               <!-- <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a> -->
         			</main><!-- #main -->
-        		</div><!--#content-inside -->
-        	</div><!-- #content -->
+            </div><!-- #primary -->
+      		</div><!--#content-inside -->
+      	</div><!-- #content -->
 
-        <?php get_footer(); ?>
+      <?php get_footer(); ?>

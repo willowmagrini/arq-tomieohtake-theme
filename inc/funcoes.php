@@ -103,15 +103,16 @@ function trac_update_userdata( $post_id ) {
 
      // insert the post
      $post_id = wp_insert_post( $post );
-
     //  adiciona a categoria (qual o edital/concurso)
      $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
      wp_set_post_terms( $post_id, $termo->term_id, 'category' );
-
-     //adiciona o id_inscricao como meta
-
      // return the new ID
+     do_action('acf/save_post', $post_id);
+     global $current_user;
+     $user_email = $current_user->user_email;
+      email_confirma_user($user_email);
      return $post_id;
+
   }
 
   // atualização de inscrição
@@ -132,8 +133,14 @@ function trac_update_userdata( $post_id ) {
   $site = $_POST['acf']['field_59fbfbae7b7e1'];
   $password= $_POST['acf']['field_59fe003f256d9'];
   // set_transient( "post_transient", $_POST, 60 );
-	// Create a new user
+
+
+
+  // Create a new user
 	if ( 'new_user' === $post_id ) {
+    if($_POST['honeypot'] != ''){
+  		die("spam yourself!");
+  	}
     set_transient( "status_inscricao", 'preliminar', 60 );
 
 		// Create a password
@@ -291,8 +298,8 @@ function email_validation( $valid, $value, $field, $input ){
   if( !$valid ) {
     return $valid;
   }
-  if ( email_exists( $value ) ) {
-    $valid = "E-mail ja cadastrado, por favor faça login <a class='show_login_link' href='#'> Aqui </a> ";
+  if ( email_exists( $value ) && !is_user_logged_in() ) {
+    $valid = "E-mail já cadastrado, por favor faça login <a class='show_login_link' href='".get_home_url()."/inscreva-se'> Aqui </a> ";
     return $valid;
   }
 	// return
@@ -365,3 +372,30 @@ function km_get_users_name( $user_id = null ) {
 	}
 	return $user_info->display_name;
 }
+
+
+
+// reduzir users spans
+// CHECK PRE SAVE POST ACF
+function honeypot( $post_id ) {
+
+}
+add_filter('acf/pre_save_post' , 'honeypot', 10, 1 );
+
+
+// email de confirmacao
+function email_confirma_user($email){
+  $subject = 'Inscrição Prêmio EDP nas Artes';
+  $message = 'Você está inscrito.';
+  $body = file_get_contents(get_stylesheet_directory() . '/inc/email-user.php');
+  function usar_html(){
+      return "text/html";
+  }
+
+  add_filter( 'wp_mail_content_type','usar_html' );
+  wp_mail( $email, $subject, $body );
+
+
+  // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+
+ }
