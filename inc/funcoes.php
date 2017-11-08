@@ -111,6 +111,8 @@ function trac_update_userdata( $post_id ) {
      global $current_user;
      $user_email = $current_user->user_email;
       email_confirma_user($user_email);
+      $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );    
+
      return $post_id;
 
   }
