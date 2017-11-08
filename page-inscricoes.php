@@ -64,6 +64,7 @@ get_header('inscricao'); ?>
   						'post_status'		=> 'publish'
   					),
   					'submit_value'		=> 'Inscrever',
+						'return' => get_home_url().'/incricao-efetuada',
 						'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
 
   				)); ?>
