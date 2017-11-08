@@ -111,7 +111,7 @@ function trac_update_userdata( $post_id ) {
      global $current_user;
      $user_email = $current_user->user_email;
       email_confirma_user($user_email);
-      $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );    
+      $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
 
      return $post_id;
 
@@ -301,7 +301,7 @@ function date_validation( $valid, $value, $field, $input ){
   if(strtotime($value) > strtotime(date("Ymd") )){
     return 'Por favor escolha uma data no passado.';
   }
-  elseif (strtotime($value) > strtotime($data_final ) || strtotime($value) < strtotime($data_inicial )){
+  elseif (strtotime($value) > strtotime('19991222' ) || strtotime($value) < strtotime('19901222' )){
 
     return 'A inscrição é valida para jovens artistas de 18 a 27 anos.';
   }
