@@ -297,4 +297,15 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     padding-left: .9375rem !important;
     }
 
+    .page-template-page-inscricoes .page-header .container {
+        padding-right: .9375rem !important;
+        padding-left: .9375rem !important;
+    }
+
+    .bza_inscricoes-template-default .page-header .container {
+        padding-right: .9375rem !important;
+        padding-left: .9375rem !important;
+    }
+
+
 }
