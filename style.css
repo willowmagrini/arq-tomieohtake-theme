@@ -267,11 +267,14 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     margin-left: 10px;
 }
 
-#message .updated {
-    background: #eb008b;
+#message {
+    background: #45c93e;
     color: #FFF;
     padding: 0 5px;
     font-family: "Open Sans Condensed", sans-serif;
+    margin-bottom: 0;
+    font-size: 1.2em;
+}
 }
 
 @media screen and (max-width: 545px) {
