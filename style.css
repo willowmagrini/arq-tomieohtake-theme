@@ -267,6 +267,13 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     margin-left: 10px;
 }
 
+#message .updated {
+    background: #eb008b;
+    color: #FFF;
+    padding: 0 5px;
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
 @media screen and (max-width: 545px) {
 
 	.section-contact h2.section-title {

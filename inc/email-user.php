@@ -1,6 +1,4 @@
 <html>
-<h3>Prêmio EDP nas Artes</h3>
-<h4>Inscrição realizado com sucesso</h4>
 <p>Olá,
 agradecemos sua inscrição na Residência Artística!</p>
 
