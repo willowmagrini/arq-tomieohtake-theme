@@ -41,7 +41,7 @@
             'field_groups' => array(79),
   					'submit_value'		=> 'Atualizar',
             'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
-            'updated_message' => __("Cadastro atualizado!", 'acf'),
+            'updated_message' => __("Inscrição atualizada!", 'acf'),
 
 
   				)); ?>

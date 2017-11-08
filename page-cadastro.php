@@ -26,10 +26,14 @@ get_header('inscricao'); ?>
 					if (get_user_meta($current_user->ID, '_etapa_cadastro',true)=='preliminar') {
 						echo "Finalizar cadastro";
 						$submit = "Finalizar cadastro";
+						$updated = "Cadastro criado";
+
 					}
 					else{
 						echo "Atualizar cadastro";
 						$submit = "Atualizar cadastro";
+						$updated = "Cadastro Atualizado";
+
 					}
 				}
 				else{
@@ -51,7 +55,8 @@ get_header('inscricao'); ?>
 							$args=array(
 		  					'post_id'		=> $post_id,
 		            'field_groups' => array(61),
-		  					'submit_value'		=> $submit
+		  					'submit_value'		=> $submit,
+								'updated_message' => $updated,
 	  					);
 						acf_form($args); ?>
 
