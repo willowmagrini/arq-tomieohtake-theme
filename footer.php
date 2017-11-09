@@ -51,7 +51,7 @@
                         <a href="http://institutotomieohtake.org.br/" target="_blank">
                             Instituto Tomie Ohtake
                         </a><br>
-                            Av.Brigadeiro Faria Lima, 201<br>
+                            Av. Brigadeiro Faria Lima, 201<br>
                             Pinheiros - São Paulo - SP<br>
                             CEP 05426-100
                         </h4>
