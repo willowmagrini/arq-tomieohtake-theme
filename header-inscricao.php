@@ -23,12 +23,12 @@
   <form id="login-user" action="login" method="post">
        <h1>Entrar</h1>
        <p class="status"></p>
-       <label for="username">Nome de usuário</label>
+       <label for="username">Email</label>
        <input id="username" type="text" name="username">
        <label for="password">Senha</label>
        <input id="password" type="password" name="password">
        <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Perdeu a senha?</a>
-       <input class="submit_button" type="submit" value="Login" name="submit">
+       <input class="submit_button" type="submit" value="Entrar" name="submit">
        <a class="close" href="">X</a>
        <?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
    </form>
