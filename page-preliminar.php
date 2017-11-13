@@ -30,7 +30,7 @@ get_header('inscricao'); ?>
 						<?php while ( have_posts() ) : the_post(); ?>
 
 							<p><?php echo get_the_content(); ?></p>
-								<a class="login_button show_login_link btn-lg btn btn-theme-primary" id="show_login" href="">Login</a>
+								<a class="login_button show_login_link btn-lg btn btn-theme-primary" id="show_login" href="">Entrar</a>
 						<?php endwhile; // End of the loop. ?>
 
 					</div>

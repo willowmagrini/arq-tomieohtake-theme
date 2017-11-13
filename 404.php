@@ -7,7 +7,7 @@
  * @package coletivo
  */
 
-get_header(); ?>
+get_header('inscricao'); ?>
 	<div id="content" class="site-content">
 
 		<div class="page-header">
