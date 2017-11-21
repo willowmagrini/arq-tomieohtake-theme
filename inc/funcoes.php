@@ -66,33 +66,67 @@ function trac_load_value_user_email( $value, $post_id, $field ) {
 add_filter( 'acf/load_value/name=user_email', 'trac_load_value_user_email', 10, 3 );
 
 
+// começa formularios de cadastro
 
 function trac_update_userdata( $post_id ) {
+
+  // Nova inscrição
   if (strpos($post_id, 'new_post_') !== false) {
+    $args = array(
+     'numberposts' => 1,
+     'orderby' => 'post_date',
+     'order' => 'DESC',
+     'post_type' => 'bza_inscricoes',
+     'post_status' => 'publish',
+     'suppress_filters' => true
+    );
+    $novos = wp_get_recent_posts( $args, ARRAY_A );
+   //  print_r( $novos[0]['ID']);
+
+   if (isset($novos[0])){
+     $titulo=get_the_title( $novos[0]['ID']);
+     $titulo + 0;
+     $titulo++;
+
+   }
+   else{
+     $titulo='1';
+   }
+
     $user=str_replace('new_post_', '', $post_id);
 
     $post = array(
        'post_status'  => 'publish' ,
-       'post_title'  => $_POST['acf']['field_59fca3266ece7'] ,
+       'post_title'  => $titulo ,
        'post_type'  => 'bza_inscricoes' ,
        'post_author' => $user
-   );
+     );
 
-   // insert the post
-   $post_id = wp_insert_post( $post );
-   $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
-   wp_set_post_terms( $post_id, $termo->term_id, 'category' );
+     // insert the post
+     $post_id = wp_insert_post( $post );
+    //  adiciona a categoria (qual o edital/concurso)
+     $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
+     wp_set_post_terms( $post_id, $termo->term_id, 'category' );
+     // return the new ID
+     do_action('acf/save_post', $post_id);
+     global $current_user;
+     $user_email = $current_user->user_email;
+      email_confirma_user($user_email);
+      $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
 
-   // return the new ID
-   return $post_id;
+     return $post_id;
+
   }
+
+  // atualização de inscrição
   else  if (strpos($post_id, 'post_') !== false) {
     $post_id=str_replace('post_', '', $post_id);
     do_action('acf/save_post', $post_id);
     return $post_id;
-
   }
 
+
+// cadastro de candidatoas
   // $user_name= $_POST['acf']['field_59fc6a2a127ad'];
 	$user_email = $_POST['acf']['field_59fc712d7a1fc'];
   $senha=$_POST['acf']['acf-field_59fe003f256d9'];
@@ -102,8 +136,14 @@ function trac_update_userdata( $post_id ) {
   $site = $_POST['acf']['field_59fbfbae7b7e1'];
   $password= $_POST['acf']['field_59fe003f256d9'];
   // set_transient( "post_transient", $_POST, 60 );
-	// Create a new user
+
+
+
+  // Create a new user
 	if ( 'new_user' === $post_id ) {
+    if($_POST['honeypot'] != ''){
+  		die("spam yourself!");
+  	}
     set_transient( "status_inscricao", 'preliminar', 60 );
 
 		// Create a password
@@ -134,6 +174,7 @@ function trac_update_userdata( $post_id ) {
     }
 	// Edit the user's email
 	}
+  // atualizacao de candidatoas
   else {
     $user=str_replace('user_', '', $post_id);
 		wp_update_user([
@@ -156,6 +197,10 @@ function trac_update_userdata( $post_id ) {
   //wp_redirect( 'http://www.wpcoke.com' );
 }
 add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
+// acaba formularios de cadastro
+
+
+
 
 function my_acf_save_post( $post_id )
 {
@@ -250,14 +295,27 @@ function username_validation( $valid, $value, $field, $input ){
 	return $valid;
 
 }
+add_filter('acf/validate_value/key=field_59fbfb077b7db', 'date_validation', 10, 4);
+function date_validation( $valid, $value, $field, $input ){
+  $data_final=date("Ymd", strtotime("-18 year"));
+  $data_inicial= date("Ymd", strtotime("-27 year"));
+  if(strtotime($value) > strtotime(date("Ymd") )){
+    return 'Por favor escolha uma data no passado.';
+  }
+  elseif (strtotime($value) > strtotime('19991222' ) || strtotime($value) < strtotime('19901222' )){
 
+    return 'A inscrição é valida para jovens artistas de 18 a 27 anos.';
+  }
+  return $valid;
+
+}
 add_filter('acf/validate_value/key=field_59fc712d7a1fc', 'email_validation', 10, 4);
 function email_validation( $valid, $value, $field, $input ){
   if( !$valid ) {
     return $valid;
   }
-  if ( email_exists( $value ) ) {
-    $valid = "E-mail ja cadastrado, por favor faça login <a class='show_login_link' href='#'> Aqui </a> ";
+  if ( email_exists( $value ) && !is_user_logged_in() ) {
+    $valid = "E-mail já cadastrado, por favor faça login <a class='show_login_link' href='".get_home_url()."/inscreva-se'> Aqui </a> ";
     return $valid;
   }
 	// return
@@ -270,7 +328,7 @@ add_filter( 'wp_nav_menu_items', 'your_custom_menu_item', 10, 2 );
 function your_custom_menu_item ( $items, $args ) {
     if ($args->theme_location == 'primary') {
       if (is_user_logged_in()) {
-         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button btn btn-theme-primary btn-lg" id="logout-botao" href="'.wp_logout_url( get_permalink() ).'">Logout</a></li>';
+         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class="login_button btn btn-theme-primary btn-lg" id="logout-botao" href="'.wp_logout_url( get_permalink() ).'">Sair</a></li>';
       }
       else {
         $items .='<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item "><a class=" btn btn-theme-primary btn-lg" id="inscreva-se" href="'.get_home_url().'/inscreva-se">Inscreva-se</a></li>';
@@ -317,3 +375,43 @@ function remove_admin_bar() {
     show_admin_bar(false);
   }
 }
+
+
+// get full Name
+function km_get_users_name( $user_id = null ) {
+	$user_info = $user_id ? new WP_User( $user_id ) : wp_get_current_user();
+	if ( $user_info->first_name ) {
+		if ( $user_info->last_name ) {
+			return $user_info->first_name . ' ' . $user_info->last_name;
+		}
+		return $user_info->first_name;
+	}
+	return $user_info->display_name;
+}
+
+
+
+// reduzir users spans
+// CHECK PRE SAVE POST ACF
+function honeypot( $post_id ) {
+
+}
+add_filter('acf/pre_save_post' , 'honeypot', 10, 1 );
+
+
+// email de confirmacao
+function email_confirma_user($email){
+  $subject = 'Inscrição Prêmio EDP nas Artes';
+  $message = 'Você está inscrito.';
+  $body = file_get_contents(get_stylesheet_directory() . '/inc/email-user.php');
+  function usar_html(){
+      return "text/html";
+  }
+
+  add_filter( 'wp_mail_content_type','usar_html' );
+  wp_mail( $email, $subject, $body );
+
+
+  // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+
+ }
