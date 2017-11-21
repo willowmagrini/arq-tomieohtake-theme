@@ -37,7 +37,7 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
                 <div class="site-branding">
                 	<div class="site-brand-inner has-logo-img no-desc">
 	                	<div class="site-logo-div"><a href="http://institutotomieohtake.org.br/" class="custom-logo-link" rel="home" itemprop="url" target="_blank">
-	                		<img width="326" height="57" src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_logo_menu.png" class="custom-logo" alt="Instituto Tomie Ohtake" itemprop="logo"></a>
+	                		<img width="264" height="57" src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_logo_menu.png" class="custom-logo" alt="Instituto Tomie Ohtake" itemprop="logo"></a>
 	                	</div>
                 	</div>
                 </div>
@@ -50,6 +50,21 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
                             <?php wp_nav_menu(array('theme_location' => 'primary', 'container' => '', 'items_wrap' => '%3$s')); ?>
                         </ul>
                     </nav>
+                    <?php if (is_user_logged_in()) {?>
+                      <nav id="user-navigation" class="main-navigation" role="navigation">
+                          <ul class="user-menu coletivo-menu">
+                            <li>Olá, <?php
+                            	$current_user = wp_get_current_user();
+                              // print_r($current_user);
+                            	$nome= km_get_users_name($current_user->ID) ;
+                              echo $nome;
+                              ?>.</li>
+                              <li id="user-menu-inscricao" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/inscricao">Inscrição</a></li>
+                              <li id="user-menu-cadastro" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/cadastro-edicao-de-usuarios/">Cadastro</a></li>
+                          </ul>
+                      </nav>
+                    <?php } ?>
+
                     <!-- #site-navigation -->
                 </div>
             </div>

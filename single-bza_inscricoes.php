@@ -18,7 +18,6 @@
 
  get_header('inscricao'); ?>
 
-
   <div id="content" class="site-content">
 
     <div class="page-header">
@@ -31,7 +30,7 @@
       <?php echo coletivo_breadcrumb(); ?>
     <?php endif; ?>
 
-    <div id="content-inside" class="container">
+    <div id="content-inside" class="container container-form">
       <main id="main" class="site-main" role="main">
 				<?php while ( have_posts() ) : the_post();
 
@@ -50,15 +49,17 @@
             'field_groups' => array(79),
   					'submit_value'		=> 'Atualizar',
             'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
+            'updated_message' => __("Inscrição atualizada!", 'acf'),
+
 
   				)); ?>
-
-
+        <br />
 				<?php endwhile; // End of the loop. ?>
 
               <!-- <a class="btn-theme-primary link-voltar" href="<?php echo get_home_url() ?>/bza_inscricoes">Voltar para lista de inscrições</a> -->
         			</main><!-- #main -->
-        		</div><!--#content-inside -->
-        	</div><!-- #content -->
+            </div><!-- #primary -->
+      		</div><!--#content-inside -->
+      	</div><!-- #content -->
 
-        <?php get_footer(); ?>
+      <?php get_footer(); ?>

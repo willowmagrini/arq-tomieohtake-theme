@@ -20,7 +20,7 @@ get_header('inscricao'); ?>
 		 <img src="<?php echo $img[0];?>"/>
 		</div>
 		<?php endif;?>
-		<div id="content-inside" class="container no-sidebar">
+		<div id="content-inside" class="container container-form no-sidebar">
 		<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
