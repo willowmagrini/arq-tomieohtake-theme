@@ -302,7 +302,7 @@ function date_validation( $valid, $value, $field, $input ){
   if(strtotime($value) > strtotime(date("Ymd") )){
     return 'Por favor escolha uma data no passado.';
   }
-  elseif (strtotime($value) > strtotime('19991222' ) || strtotime($value) < strtotime('19901222' )){
+  elseif (strtotime($value) > strtotime('19991223' ) || strtotime($value) < strtotime('19891223' )){
 
     return 'A inscrição é valida para jovens artistas de 18 a 27 anos.';
   }
