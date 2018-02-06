@@ -30,8 +30,10 @@ function inscricoes() {
 		'items_list'            => __( 'Items list', 'bza_inscricoes' ),
 		'items_list_navigation' => __( 'Items list navigation', 'bza_inscricoes' ),
 		'filter_items_list'     => __( 'Filter items list', 'bza_inscricoes' ),
+
 	);
 	$args = array(
+		'rewrite' => array('slug' => 'inscricoes'),
 		'label'                 => __( 'Inscrição', 'bza_inscricoes' ),
 		'description'           => __( 'Inscrições de candidatos', 'bza_inscricoes' ),
 		'labels'                => $labels,
@@ -45,7 +47,7 @@ function inscricoes() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => 'true',
+		'has_archive'           => 'inscricoes',
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',

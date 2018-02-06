@@ -33,7 +33,7 @@ function pega_user(){
 
     foreach ($campos_user as $campo => $valor) {
       if ($campo != 'senha' && $campo != 'confirmacao_da_senha') {
-        if ($campo == 'rg_digitalizado') {
+        if ($campo == 'anexo_rg' || $campo == 'anexo_cau' ||$campo == 'anexo_cpf') {
           $valor = '<br><img class="rg-user" src="'.$valor['url'].'">';
         }
         elseif($campo == 'nome_completo' && !$valor){
@@ -62,7 +62,7 @@ function pega_user(){
         array(
           'taxonomy' => 'category',
           'field'    => 'name',
-          'terms'    => 'Prêmio EDP nas Artes',
+          'terms'    => '2018',
         ),
       ),
     );
@@ -73,7 +73,7 @@ function pega_user(){
       // $inscricao_completa=(1 == $meta = get_post_meta($post->ID, "inscricao_completa", true)) ? '<b>Inscrição - </b>  Completa' : '<b>Inscrição - </b>Incompleta'; // $r is set to 'Yes'
       $campos_inscricao=get_fields($post->ID);
       foreach ($campos_inscricao as $campo_insc => $valor_insc) {
-        if ($campo_insc == 'portfolio') {
+        if ($campo_insc == 'anexo_do_projeto') {
           $path = parse_url($valor_insc['url'], PHP_URL_PATH);
           $path = explode('&',$path);
           $filename = $path[0];
@@ -163,13 +163,13 @@ function query_user_ajax(){
           array(
             'taxonomy' => 'category',
             'field'    => 'name',
-            'terms'    => 'Prêmio EDP nas Artes',
+            'terms'    => '2018',
           ),
         ),
       );
       $query = new WP_Query( $args );
       if($query->post_count != 0 ){
-        $user_nome = ( get_field('nome_completo', 'user_'.$value->ID) ) ? get_field('nome_completo', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
+        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
         $inscritos .= '<div id="'.$value->ID.'" class="candidato">';
         $user_id = $value->ID;
         $inscritos .= '  <a href="#" class="user_ajax" data-id="'.$user_id.'">';
@@ -181,7 +181,7 @@ function query_user_ajax(){
         $inscritos .=  '   </div>';
       }
       else{
-        $user_nome = ( get_field('nome_completo', 'user_'.$value->ID) ) ? get_field('nome_completo', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
+        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
         $cadastrados .= '<div id="'.$value->ID.'" class="candidato">';
         $user_id = $value->ID;
         $cadastrados .= '  <a href="#" class="user_ajax" data-id="'.$user_id.'">';

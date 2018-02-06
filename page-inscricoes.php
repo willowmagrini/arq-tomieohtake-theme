@@ -16,14 +16,15 @@
 			array(
 				'taxonomy' => 'category',
 				'field'    => 'name',
-				'terms'    => 'Prêmio EDP nas Artes',
+				'terms'    => '2018',
 			),
 		),
 	);
 
 	// The Query
 	$query = new WP_Query( $args );
-	if($query->post_count != 0 ){
+	echo 'jhbdjhb'.$query->post_count;
+	if($query->post_count == 5 ){
 		$post=$query->posts[0];
 		$link=get_permalink($post);
 		wp_redirect( $link );
@@ -57,7 +58,7 @@ get_header('inscricao'); ?>
 
 					acf_form(array(
   					'post_id'		=> 'new_post_'.$user_id,
-            'field_groups' => array(388),
+            'field_groups' => array(395),
 
   					'new_post'		=> array(
   						'post_type'		=> 'bza_inscricoes',
