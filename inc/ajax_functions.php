@@ -142,18 +142,18 @@ function query_user_ajax(){
 
 
   foreach ($metas as $key => $value) {
-    $estados=explode('/', $value);
-
-    foreach ($estados as $estado) {
-
-        $query = array(
-              'key'		=> $key,
-              'value' => '[[:<:]]'.$estado.'[[:>:]]',
-              'compare'	=> 'RLIKE',
-          );
-      array_push($args['meta_query'], $query );
-    }
-      $response['args']= $args;
+		if ($value != '') {
+			$estados=explode('/', $value);
+	    foreach ($estados as $estado) {
+	        $query = array(
+	              'key'		=> $key,
+	              'value' => '[[:<:]]'.$estado.'[[:>:]]',
+	              'compare'	=> 'RLIKE',
+	          );
+	      array_push($args['meta_query'], $query );
+	    }
+		}
+    $response['args']= $args;
 
   }
 
