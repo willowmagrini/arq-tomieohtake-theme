@@ -70,20 +70,30 @@ function pega_user(){
   	if($query->post_count != 0 ){
       $modal_inscricao='';
   		$post=$query->posts[0];
+			foreach ($query->posts as $post ) {
+				$campos_inscricao=get_fields($post->ID);
+	      foreach ($campos_inscricao as $campo_insc => $valor_insc) {
+	        if ($campo_insc == 'anexo_do_projeto') {
+	          $path = parse_url($valor_insc['url'], PHP_URL_PATH);
+	          $path = explode('&',$path);
+	          $filename = $path[0];
+	          $valor_insc = '<a target="_blank" href="'.$valor_insc['url'].'">'.basename($filename).'</a>';
+	        }
+					if ($campo_insc == 'nome_do_projeto') {
+						$objeto_campo = get_field_object($campo_insc,$post->ID);
+						$nome_campo = $objeto_campo['label'];
+						$modal_inscricao .= '<br><div><b>'.$nome_campo.': </b><h3>'.$valor_insc.'</h3></div>';
+					}
+					else{
+						$objeto_campo = get_field_object($campo_insc,$post->ID);
+						$nome_campo = $objeto_campo['label'];
+						$modal_inscricao .= '<div><b>'.$nome_campo.': </b>'.$valor_insc.'</div>';
+						$teste=$post->ID;
+					}
+	      }
+			}
       // $inscricao_completa=(1 == $meta = get_post_meta($post->ID, "inscricao_completa", true)) ? '<b>Inscrição - </b>  Completa' : '<b>Inscrição - </b>Incompleta'; // $r is set to 'Yes'
-      $campos_inscricao=get_fields($post->ID);
-      foreach ($campos_inscricao as $campo_insc => $valor_insc) {
-        if ($campo_insc == 'anexo_do_projeto') {
-          $path = parse_url($valor_insc['url'], PHP_URL_PATH);
-          $path = explode('&',$path);
-          $filename = $path[0];
-          $valor_insc = '<a target="_blank" href="'.$valor_insc['url'].'">'.basename($filename).'</a>';
-        }
-          $objeto_campo = get_field_object($campo_insc,$post->ID);
-          $nome_campo = $objeto_campo['label'];
-          $modal_inscricao .= '<div><b>'.$nome_campo.': </b>'.$valor_insc.'</div>';
-          $teste=$post->ID;
-      }
+
       // $modal_inscricao .= '<div class="acf-label">
       // <label for="inscricao-completa-checkbox">Inscrição completa</label>
       // <input type="checkbox" id="inscricao-completa-checkbox" name="inscricao-completa-checkbox" value="1" >

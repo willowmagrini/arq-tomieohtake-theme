@@ -77,6 +77,8 @@ get_header(); ?>
 						</article><!-- #post-## -->
 
 					<?php endwhile; ?>
+					<div class="clearfix"></div>
+					<p><?php echo 'Quer inscrever outro projeto?  Clique <a href="'.get_home_url().'/inscricao">aqui!</a>'; ?></p>
 
 					<?php the_posts_navigation(); ?>
 
@@ -88,7 +90,7 @@ get_header(); ?>
 						<h2><?php esc_html_e( 'Nenhuma inscrição.', 'coletivo' ); ?></h2>
 						<div class="page-content">
 
-								<p><?php esc_html_e( 'Você não está inscrito. Clique <a href="'.get_home_url().'/cadastro-edicao-de-usuarios">aqui para se inscrever</a>', 'coletivo' ); ?></p>
+								<p><?php echo 'Você não está inscrito. Clique <a href="'.get_home_url().'/inscricao">aqui para se inscrever</a>'; ?></p>
 
 						</div><!-- .page-content -->
 					</section><!-- .no-results -->

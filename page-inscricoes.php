@@ -23,7 +23,6 @@
 
 	// The Query
 	$query = new WP_Query( $args );
-	echo 'jhbdjhb'.$query->post_count;
 	if($query->post_count == 5 ){
 		$post=$query->posts[0];
 		$link=get_permalink($post);
