@@ -65,7 +65,7 @@
 	// echo "<pre>";
 	// print_r($csv_array);
 	// echo "</pre>";
-	$fp = fopen('file.csv', 'w');
+	$fp = fopen('incricoes.csv', 'w');
 
 	foreach ($csv_array as $fields) {
 			fputcsv($fp, $fields);
@@ -73,7 +73,7 @@
 
 	fclose($fp);
 	header('Content-Type: application/csv');
-header('Content-Disposition: attachment; filename=file.csv');
+header('Content-Disposition: attachment; filename=incricoes.csv');
 header('Pragma: no-cache');
-readfile("file.csv");
+readfile("incricoes.csv");
 ?>
