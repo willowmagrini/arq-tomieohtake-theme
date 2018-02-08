@@ -15,33 +15,34 @@
             <hr>
                 <div class="row logos">
                     <div class="col-md-2">
-                        <h3>&nbsp;</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_A.png" style="width: 160px;">
-                    </div>
-                    <div class="col-md-2">
                         <h3>PATROCÍNIO<br>&nbsp;</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_B.png" style="width: 160px;">
-                    </div>
-                    <div class="col-md-2">
-                         <h3>APOIO<br>&nbsp;</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_B2.png" style="width: 160px;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_akzonobel_gde.png" style="width: 160px;">
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <h3>APOIO DE MÍDIA<br>&nbsp;</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_C2.png" style="width: 80px; float: left;">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_C3.png" style="width: 80px; float: left;">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_C4.png" style="width: 80px; float: left;">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_C5.png" style="width: 80px; float: left;">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_C6.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_arco.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_archdaily.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_coletiva.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_culturafm.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_folha.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_projeto.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_vitruvius.png" style="width: 80px; float: left;">
                     </div>
                     <div class="col-md-2">
                         <h3>IDEALIZAÇÃO E<br> COORDENAÇÃO</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_D.png" style="width: 160px;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_tomie.png" style="width: 160px;">
                     </div>
-                     <div class="col-md-2">
+                     <div class="col-md-4">
                         <h3>REALIZAÇÃO</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_E.png" style="width: 160px;">
+                        <div class="col-md-6">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_proacsp.png" style="width: 80px;">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_govsp.png" style="width: 160px;">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_rouanet.png" style="width: 80px;">
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_minc.png" style="width: 160px;">
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -57,7 +58,7 @@
                         </h4>
                     </div>
                     <div class="col-md-2 col-lg-offset-4">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_index_logo2.png" class="img-responsive">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_index_logo_rodape.png" class="img-responsive">
                     </div>
                 </div>
                 <hr>
