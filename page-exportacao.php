@@ -1,4 +1,18 @@
 <?php
+/**
+ *Template Name: Página de exportação
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package coletivo
+ */
+ // if (is_user_logged_in()) {
+ // 	wp_redirect( get_home_url().'/cadastro-edicao-de-usuarios' );
+ //
+ // }
+ if 	( !current_user_can( 'jurado' ) && !current_user_can( 'administrator' ) ){
+	wp_redirect( get_home_url());
+
+}
 	$csv_array = array(
 						array(
 							"email","nome","data_de_nascimento","nacionalidade","genero","nec_esp","recurso_especifico","cep","uf","cidade","bairro","rua","numero","complemento","telefone","formação","conclusao","cau","rg","cpf","como","anexo_rg","anexo_cau","anexo_cpf",
