@@ -129,7 +129,7 @@ function trac_update_userdata( $post_id ) {
      // insert the post
      $post_id = wp_insert_post( $post );
     //  adiciona a categoria (qual o edital/concurso)
-     $termo=get_term_by( 'name', 'PRÊMIO EDP NAS ARTES', 'category' );
+     $termo=get_term_by( 'name', '2018', 'category' );
      wp_set_post_terms( $post_id, $termo->term_id, 'category' );
      // return the new ID
      do_action('acf/save_post', $post_id);
@@ -152,13 +152,12 @@ function trac_update_userdata( $post_id ) {
 
 // cadastro de candidatoas
   // $user_name= $_POST['acf']['field_59fc6a2a127ad'];
-	$user_email = $_POST['acf']['field_59fc712d7a1fc'];
-  $senha=$_POST['acf']['acf-field_59fe003f256d9'];
-  $senha_conf=$_POST['acf']['acf-field_59fe0082256da'];
-  $nome_completo= $_POST['acf']['field_59fbfafd7b7da'];
-  $data_nasc = $_POST['acf']['field_59fbfb077b7db'];
-  $site = $_POST['acf']['field_59fbfbae7b7e1'];
-  $password= $_POST['acf']['field_59fe003f256d9'];
+	$user_email = $_POST['acf']['field_5a79e3968abac'];
+  $senha=$_POST['acf']['field_5a79e721d5c28'];
+  $senha_conf=$_POST['acf']['field_5a79e72cd5c29'];
+  // $nome_completo= $_POST['acf']['field_5a79e2c58ab9f'];
+  // $data_nasc = $_POST['acf']['field_5a79e2d58aba0'];
+  $password= $senha;
   // set_transient( "post_transient", $_POST, 60 );
 
 
@@ -169,13 +168,13 @@ function trac_update_userdata( $post_id ) {
   		die("spam yourself!");
   	}
     set_transient( "status_inscricao", 'preliminar', 60 );
-
 		// Create a password
 		$length = 13;
 		$include_standard_special_chars = false;
 		$random_password = wp_generate_password( $length, $include_standard_special_chars );
 		// Create the user, use email as username
 		$user_id = wp_create_user( $user_email, $password, $user_email );
+
     if (!is_int($user_id)){
       set_transient( "validacao_user_error", $user_id, 60 );
       return false;
@@ -185,7 +184,7 @@ function trac_update_userdata( $post_id ) {
       wp_set_auth_cookie($user_id);
       wp_update_user([
   			'ID' => $user_id,
-  			'first_name' => ( ! empty($_POST['acf']['field_59fbfafd7b7da']) ? $_POST['acf']['field_59fbfafd7b7da'] : '' ),
+  			'first_name' => ( ! empty($_POST['acf']['field_5a79e2c58ab9f']) ? $_POST['acf']['field_5a79e2c58ab9f'] : '' ),
   			'role' => 'candidato',
         'user_url' => $site
   		]);
@@ -291,8 +290,8 @@ function my_acf_validate_value( $valid, $value, $field, $input ){
 	if( !$valid ) {
 		return $valid;
 	}
-  $value_1 = $_POST['acf']['field_59fe003f256d9'];
-  $value_2 = $_POST['acf']['field_59fe0082256da'];
+  $value_1 = $_POST['acf']['field_5a79e721d5c28'];
+  $value_2 = $_POST['acf']['field_5a79e72cd5c29'];
 	if ($value_1 != $value_2 )  {
     $valid = 'As senhas não são iguais';
   }
@@ -333,7 +332,7 @@ function date_validation( $valid, $value, $field, $input ){
   return $valid;
 
 }
-add_filter('acf/validate_value/key=field_59fc712d7a1fc', 'email_validation', 10, 4);
+add_filter('acf/validate_value/key=field_5a79e3968abac', 'email_validation', 10, 4);
 function email_validation( $valid, $value, $field, $input ){
   if( !$valid ) {
     return $valid;

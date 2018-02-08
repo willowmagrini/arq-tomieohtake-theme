@@ -40,6 +40,14 @@ get_header(); ?>
 
 								</a>
 							</div>
+							<?php
+								$post_meta=get_post_meta( get_the_id());
+								$email = get_the_author_meta( 'user_email' );
+								$nome = get_the_author_meta( 'user_email' );
+								$user_id = get_the_author_meta( 'ID' );
+								$user_meta=get_user_meta( $user_id);
+								// print_r($post_meta['nome_do_projeto'][0]);
+							?>
 
 							<div class="list-article-content">
 								<div class="list-article-meta">
@@ -49,7 +57,9 @@ get_header(); ?>
 									 ?>
 								</div>
 								<header class="entry-header">
-									<p>Nome Artistico:<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?></p>
+									<p>E-mail: <?php echo $email;?></p>
+									<p>Nome do Candidatos: <?php echo $user_meta['nome'][0];?></p>
+									<p>Nome do projeto: <a href="<?php echo get_post_permalink( get_the_id() );?>"> <?php  echo $post_meta['nome_do_projeto'][0] ?></a>	</p>
 								</header><!-- .entry-header -->
 								<div class="entry-excerpt">
 									<?php
@@ -67,6 +77,8 @@ get_header(); ?>
 						</article><!-- #post-## -->
 
 					<?php endwhile; ?>
+					<div class="clearfix"></div>
+					<p><?php echo 'Quer inscrever outro projeto?  Clique <a href="'.get_home_url().'/inscricao">aqui!</a>'; ?></p>
 
 					<?php the_posts_navigation(); ?>
 
@@ -78,7 +90,7 @@ get_header(); ?>
 						<h2><?php esc_html_e( 'Nenhuma inscrição.', 'coletivo' ); ?></h2>
 						<div class="page-content">
 
-								<p><?php esc_html_e( 'Você não está inscrito. Clique <a href="'.get_home_url().'/cadastro-edicao-de-usuarios">aqui para se inscrever</a>', 'coletivo' ); ?></p>
+								<p><?php echo 'Você não está inscrito. Clique <a href="'.get_home_url().'/inscricao">aqui para se inscrever</a>'; ?></p>
 
 						</div><!-- .page-content -->
 					</section><!-- .no-results -->

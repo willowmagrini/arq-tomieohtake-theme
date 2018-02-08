@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
             if (data['modal_inscricao']) {
               $('#links-user #inscricao').html('<div><b>Inscrição - </b>  Completa</div>');
               // $('#links-user #inscricao').html('<div>'+data['inscricao_completa']+'</div>');
-              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrição</button></div>');
+              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrições</button></div>');
             }
             else{
               $('#links-user #inscricao').html('<div>O candidato não fez uma inscrição</div>');
@@ -305,7 +305,7 @@ function verifica_box(elemento){
         page='inscritos';
       }
       var metas={
-        'cidade__estado__pais_de_residencia' : valor,
+        'uf' : valor,
       }
       console.log(metas);
 

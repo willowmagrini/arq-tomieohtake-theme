@@ -84,7 +84,7 @@ get_header('inscricao'); ?>
 
                 if (isset($_GET['nome'])) {
                       $nome=array(
-                          'key' => 'nome_completo',
+                          'key' => 'nome',
                           'value' =>  $_GET['nome'],
                           'compare' => 'LIKE'
                       );
@@ -100,7 +100,7 @@ get_header('inscricao'); ?>
 											array(
 												'taxonomy' => 'category',
 												'field'    => 'name',
-												'terms'    => 'Prêmio EDP nas Artes',
+												'terms'    => '2018',
 											),
 										),
 									);
@@ -109,7 +109,7 @@ get_header('inscricao'); ?>
 	                  ?>
 	                  <div id="<?php echo $value->ID ?>" class="candidato">
 	                    <?php
-	                    $user_nome = ( get_field('nome_completo', 'user_'.$value->ID) ) ? get_field('nome_completo', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
+	                    $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
 	                    $user_id = $value->ID;
 	                    ?>
 	                    <a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">

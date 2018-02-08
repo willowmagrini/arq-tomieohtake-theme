@@ -40,7 +40,7 @@ get_header('inscricao'); ?>
 								$args=array(
 									'post_id'		=> 'new_user',
 									// 'field_groups' => array(61),
-									'fields' => array('field_59fc6a2a127ad','field_59fc712d7a1fc','field_59fe003f256d9','field_59fe0082256da'),
+									'fields' => array('field_5a79e3968abac','field_5a79e721d5c28','field_5a79e72cd5c29'),
 									'html_after_fields'	=> '<input type="text" id="honeypot" name="honeypot" autocomplete="off">',
 									'updated_message' => __("", 'acf'),
 

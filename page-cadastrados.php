@@ -36,7 +36,7 @@ get_header('inscricao'); ?>
 							<form class="" action="" method="get">
 								<input id="busca-nome" type="text" name="nome" value="">
 								<input type="submit" id="label-busca-nome" value="">
-								<select name="cidade__estado__pais_de_residencia" id="uf">
+								<select name="uf" id="uf">
 									<option value="">Estado</option>
 									<option value="AC/Acre">AC</option>
 									<option value="AL/Alagoas">AL</option>
@@ -83,7 +83,7 @@ get_header('inscricao'); ?>
 								if (isset($_GET['nome'])) {
 									$args['meta_query']= array(
 											array(
-													'key' => 'nome_completo',
+													'key' => 'nome',
 													'value' =>  $_GET['nome'],
 													'compare' => 'LIKE'
 											)
@@ -98,7 +98,7 @@ get_header('inscricao'); ?>
 											array(
 												'taxonomy' => 'category',
 												'field'    => 'name',
-												'terms'    => 'Prêmio EDP nas Artes',
+												'terms'    => '2018',
 											),
 										),
 									);
@@ -107,7 +107,7 @@ get_header('inscricao'); ?>
 										?>
 										<div id="<?php echo $value->ID ?>" class="candidato">
 											<?php
-											$user_nome = ( get_field('nome_completo', 'user_'.$value->ID) ) ? get_field('nome_completo', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
+											$user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
 											$user_id = $value->ID;
 											?>
 											<a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">
