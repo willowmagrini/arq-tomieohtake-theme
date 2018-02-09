@@ -113,7 +113,7 @@ get_header('inscricao'); ?>
 											foreach ($query->posts as $post ) {?>
 												<div id="<?php echo $value->ID ?>" class="candidato">
 
-													<a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">
+													<a href="#" class="inscricao_ajax" data-user-id="<?php echo $user_id;?>" data-id="<?php echo $post->ID;?>">
 			                      <?php echo $user_nome." - ". get_field('nome_do_projeto',  $post->ID ); ?>
 			                    </a>
 													<?php $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';?>
