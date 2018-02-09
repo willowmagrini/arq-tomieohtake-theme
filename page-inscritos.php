@@ -107,25 +107,34 @@ get_header('inscricao'); ?>
 									$query = new WP_Query( $args );
 									if($query->post_count != 0 ){
 	                  ?>
-	                  <div id="<?php echo $value->ID ?>" class="candidato">
 	                    <?php
-	                    $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
+	                    $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
 	                    $user_id = $value->ID;
-	                    ?>
-	                    <a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">
-	                      <?php echo $user_nome; ?>
-	                    </a>
-	                    <?php $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';?>
-	                      <input class="seleciona-candidato" type="checkbox" data-id="<?php echo $user_id;?>" id="user_<?php echo $user_id;?>"  value="1" <?php echo $checked ?>/>
-	                      <label for="user_<?php echo $user_id;?>">
-	                      </label>
-	                      <br>
+											foreach ($query->posts as $post ) {?>
+												<div id="<?php echo $value->ID ?>" class="candidato">
+
+													<a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">
+			                      <?php echo $user_nome." - ". get_field('nome_do_projeto',  $post->ID ); ?>
+			                    </a>
+													<?php $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';?>
+														<input class="seleciona-candidato" type="checkbox" data-id="<?php echo $user_id;?>" id="user_<?php echo $user_id;?>"  value="1" <?php echo $checked ?>/>
+														<label for="user_<?php echo $user_id;?>">
+														</label>
+														<br>
+												</div>
+
+												<?php
+											}
+											// print_r($query->posts);
+											?>
+
+
+
 
 	                    <?php
 	                    // print_r($value->ID);
 	                    // echo "mais uma<br>";
 	                    ?>
-	                	</div>
 	                <?php
 									}
                 }
