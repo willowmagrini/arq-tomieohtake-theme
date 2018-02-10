@@ -177,7 +177,7 @@ jQuery(document).ready(function($) {
 
       $('#modal-cadastro').fadeIn();
       e.preventDefault();
-      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php ,  .page-template-page-finalistas-php ').on('click',' #fechar', function(e){
+      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php ,  .page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click',' #fechar', function(e){
         $('#modal-cadastro').fadeOut(500);
         $('.login_overlay').fadeOut(500,function(){
           $('.login_overlay').remove()
@@ -195,7 +195,7 @@ jQuery(document).ready(function($) {
 
       $('#modal-inscricao').fadeIn();
       e.preventDefault();
-      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php , .page-template-page-finalistas-php ').on('click','#fechar' ,function(e){
+      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php , .page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click','#fechar' ,function(e){
         $('#modal-inscricao').fadeOut(500);
         $('.login_overlay').fadeOut(500,function(){
           $('.login_overlay').remove()
@@ -249,7 +249,8 @@ function verifica_box(elemento){
     });
 
     // marca candidato como finalista
-    $('.page-template-page-inscritos-php ').on('click','.seleciona-candidato', function(e){
+    $('.page-template-page-proj-finalistas-php, .page-template-page-inscritos-php ').on('click','.seleciona-candidato', function(e){
+			console.log('teste');
       var valor = verifica_box($(this));
       var elemento = $(this);
       $.ajax({
@@ -262,32 +263,37 @@ function verifica_box(elemento){
               'valor': valor
             },
           success: function(data){
+						if ($("body").hasClass('page-template-page-proj-finalistas-php')) {
+							location.reload();
+						}
             // if (data!=true) {
             //   $(elemento).attr('checked', false); // Unchecks it
             // }
-            console.log(data)
+            // console.log(data)
 
           }
       });
 
     });
-    $('.page-template-page-finalistas-php ').on('click', '.inscricao-finalista', function(e){
+    $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '.inscricao-finalista', function(e){
       $('.candidatos').addClass('desativado');
       $('body').prepend('<div class="login_overlay"></div>');
       $('.login_overlay').fadeIn(500);
       $('#user-loading').fadeIn(500);
-      id=$(this).attr('data-id');
+      user_id=$(this).attr('data-user-id');
+			post_id=$(this).attr('data-id');
       $.ajax({
           type: 'POST',
           dataType: 'json',
           url: ajax_bza_inscricoes_object.ajaxurl,
           data: {
-              'action': 'pegauser', //calls wp_ajax_nopriv_ajaxlogin
-              'id': id
+						'action': 'pegainscricao',
+						'user_id': user_id,
+						'post_id': post_id
             },
           success: function(data){
             window.scrollTo(0, 0);
-
+						console.log(data);
             $('#links-user #cadastro').html('<div>'+data['perfil_completo']+'</div>');
             $('#links-user #cadastro').append('<div>'+data['rg_verificado']+'</div>');
             if (data['modal_inscricao']) {
@@ -300,7 +306,7 @@ function verifica_box(elemento){
             $('#user-loading').fadeOut(500);
             $('#modal-inscricao').fadeIn();
             // $('#links-user').fadeIn();
-            $('.page-template-page-finalistas-php ').on('click', '#fechar', function(e){
+            $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '#fechar', function(e){
               $('#modal-inscricao').fadeOut(500);
               $('.login_overlay').fadeOut(500,function(){
                 $('.login_overlay').remove()
@@ -312,8 +318,9 @@ function verifica_box(elemento){
       e.preventDefault();
     });
 
-    $('.page-template-page-finalistas-php ').on('click','.cadastro-finalista', function(e){
-      $('.candidatos').addClass('desativado');
+    $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click','.cadastro-finalista', function(e){
+			console.log('cadastro');
+			$('.candidatos').addClass('desativado');
       $('body').prepend('<div class="login_overlay"></div>');
       $('.login_overlay').fadeIn(500);
       $('#user-loading').fadeIn(500);
@@ -336,7 +343,7 @@ function verifica_box(elemento){
             $('#user-loading').fadeOut(500);
             $('#modal-cadastro').fadeIn();
             // $('#links-user').fadeIn();
-            $('.page-template-page-finalistas-php ').on('click', '#fechar', function(e){
+            $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '#fechar', function(e){
               $('#modal-cadastro').fadeOut(500);
               $('.login_overlay').fadeOut(500,function(){
                 $('.login_overlay').remove()
@@ -370,7 +377,7 @@ function verifica_box(elemento){
           dataType: 'json',
           url: ajax_bza_inscricoes_object.ajaxurl,
           data: {
-              'action': 'queryuser',
+              'action': 'pegauser',
               'metas': metas,
               'page': page
             },

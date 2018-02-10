@@ -167,3 +167,6 @@ form#login-user a.close{
 .page-template-page-cadastrados-php .candidato label{
   display: none;
 }
+.page-template-page-proj-finalistas-php #form-rg{
+	display: none;
+}

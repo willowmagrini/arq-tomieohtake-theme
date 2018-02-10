@@ -177,7 +177,7 @@ function pega_inscricao(){
     echo json_encode(array('rg_verificado'=>$rg_verificado,'id'=>$user_id, 'perfil_completo'=>$perfil_completo, 'inscricao_completa'=>$inscricao_completa,'modal_cadastro'=>$modal_cadastro, 'modal_inscricao'=>$modal_inscricao, 'message'=>__('Sucesso!')));
   }
   else {
-    echo json_encode(array('id'=>'nao sei', 'message'=>__('duh!')));
+    echo json_encode(array('id'=>'nao sssei', 'message'=>__('duh!')));
   }
   die();
 }
@@ -200,12 +200,13 @@ function marca_finalista(){
   //   echo json_encode('Já existem oito candidatos selecionados');
   // }
   // else {
-    $resultado = update_user_meta( $_POST['id'], 'finalista', $_POST['valor'] );
+    $resultado = update_post_meta( $_POST['id'], 'finalista', $_POST['valor'] );
     echo json_encode($resultado);
   // }
     die();
 }
-// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas
 function query_user_ajax(){
   $args = array(
       'role'         => 'candidato',
@@ -253,18 +254,20 @@ function query_user_ajax(){
         ),
       );
       $query = new WP_Query( $args );
-      if($query->post_count != 0 ){
-        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
-        $inscritos .= '<div id="'.$value->ID.'" class="candidato">';
-        $user_id = $value->ID;
-        $inscritos .= '  <a href="#" class="user_ajax" data-id="'.$user_id.'">';
-        $inscritos .=  $user_nome;
-        $inscritos .=  '</a>';
-        $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';
-        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$user_id.'" id="user_'. $user_id.'"  value="1" '. $checked.'/>';
-        $inscritos .=  '  <label for="user_'.$user_id.'">';
-        $inscritos .=  '   </div>';
-      }
+			if($query->post_count != 0 ){
+				foreach ($query->posts as $post) {
+					$user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
+	        $inscritos .= '<div id="'.$value->ID.'" class="candidato">';
+	        $user_id = $value->ID;
+	        $inscritos .= '  					<a href="#" class="inscricao_ajax" data-user-id="'.$user_id.'" data-id="'.$post->ID.'">';
+	        $inscritos .=  $user_nome." - ". get_field('nome_do_projeto',  $post->ID );
+	        $inscritos .=  '</a>';
+	        $checked = (1 == get_post_meta($post->ID, 'finalista', true)) ? 'checked' : '';
+	        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$user_id.'" id="user_'. $user_id.'"  value="1" '. $checked.'/>';
+	        $inscritos .=  '  <label for="user_'.$user_id.'">';
+	        $inscritos .=  '   </div>';
+				}
+			}
       else{
         $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
         $cadastrados .= '<div id="'.$value->ID.'" class="candidato">';
@@ -296,3 +299,5 @@ function query_user_ajax(){
 
   die();
 }
+// pega usuario com base nos metas// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas

@@ -25,6 +25,8 @@ add_action( 'wp_ajax_nopriv_marcafinalista', 'marca_finalista' );
 add_action( 'wp_ajax_marcafinalista', 'marca_finalista' );
 add_action( 'wp_ajax_nopriv_queryuser', 'query_user_ajax' );
 add_action( 'wp_ajax_queryuser', 'query_user_ajax' );
+add_action( 'wp_ajax_nopriv_queryinscricao', 'query_inscricao_ajax' );
+add_action( 'wp_ajax_queryinscricao', 'query_inscricao_ajax' );
 add_action( 'wp_ajax_nopriv_pegainscricao', 'pega_inscricao' );
 add_action( 'wp_ajax_pegainscricao', 'pega_inscricao' );
 
