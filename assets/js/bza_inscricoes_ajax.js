@@ -63,8 +63,52 @@ jQuery(document).ready(function($) {
         e.preventDefault();
     });
 
+// Função para pegar inscrição de projeto
+// 			carrega_inscricao(post_id,user_id,nome);
+
+		function carrega_inscricao(post_id,user_id,nome){
+      $('#nome-user').html(nome);
+      $('.candidatos').addClass('desativado');
+      $('#links-user').fadeOut();
+      $('#user-loading').fadeIn(500);
+      $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          url: ajax_bza_inscricoes_object.ajaxurl,
+          data: {
+              'action': 'pegainscricao',
+              'user_id': user_id,
+							'post_id': post_id
+
+            },
+          success: function(data){
+            $('#links-user #cadastro').html('<div>'+data['perfil_completo']+'</div>');
+            $('#links-user #cadastro').append('<div>'+data['rg_verificado']+'</div>');
+            $('#links-user #cadastro').append('<div><button class="btn btn-theme-primary">Ver cadastro</button></div>');
+            if (data['modal_inscricao']) {
+              $('#links-user #inscricao').html('<div><b>Inscrição - </b>  Completa</div>');
+              // $('#links-user #inscricao').html('<div>'+data['inscricao_completa']+'</div>');
+              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrição</button></div>');
+            }
+            else{
+              $('#links-user #inscricao').html('<div>O candidato não fez uma inscrição</div>');
+            }
+            $('#user-loading').fadeOut(500);
+            $('.candidatos').removeClass('desativado');
+            $('#modal-cadastro').html('<a id="fechar" href="#">X</a>'+data['modal_cadastro']);
+            $('#modal-inscricao').html('<a id="fechar" href="#">X</a>'+data['modal_inscricao']);
+            $('#links-user').fadeIn();
 
 
+          }
+      });
+
+    }
+// Pega_inscricao
+
+
+
+// Função para carregar usuários da página de cadastro e de inscritos (quando aplicavel)
     function carrega_user(id,nome ){
       $('#nome-user').html(nome);
       $('.candidatos').addClass('desativado');
@@ -85,13 +129,13 @@ jQuery(document).ready(function($) {
             if (data['modal_inscricao']) {
               $('#links-user #inscricao').html('<div><b>Inscrição - </b>  Completa</div>');
               // $('#links-user #inscricao').html('<div>'+data['inscricao_completa']+'</div>');
-              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrições</button></div>');
+              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrição</button></div>');
             }
             else{
               $('#links-user #inscricao').html('<div>O candidato não fez uma inscrição</div>');
             }
             $('#user-loading').fadeOut(500);
-            $('.candidatos').removeClass('desativado');1
+            $('.candidatos').removeClass('desativado');
             $('#modal-cadastro').html('<a id="fechar" href="#">X</a>'+data['modal_cadastro']);
             $('#modal-inscricao').html('<a id="fechar" href="#">X</a>'+data['modal_inscricao']);
             $('#links-user').fadeIn();
@@ -113,6 +157,18 @@ jQuery(document).ready(function($) {
       e.preventDefault();
     });
 
+    // novo ajax da página de inscritos, pegando os projetos e não os candidatos
+		$('.page-template-page-inscritos-php ').on('click', '.inscricao_ajax', function(e){
+			// alert($(this).attr('data-id'));
+			user_id=$(this).attr('data-user-id');
+			post_id=$(this).attr('data-id');
+			nome=$(this).text();
+
+			carrega_inscricao(post_id,user_id,nome);
+			window.scrollTo(0, 0);
+
+			e.preventDefault();
+		});
     // Clique no cadastro
 
     $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php ').on('click', '#cadastro',function(e){
@@ -121,7 +177,7 @@ jQuery(document).ready(function($) {
 
       $('#modal-cadastro').fadeIn();
       e.preventDefault();
-      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php ,  .page-template-page-finalistas-php ').on('click',' #fechar', function(e){
+      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php ,  .page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click',' #fechar', function(e){
         $('#modal-cadastro').fadeOut(500);
         $('.login_overlay').fadeOut(500,function(){
           $('.login_overlay').remove()
@@ -139,7 +195,7 @@ jQuery(document).ready(function($) {
 
       $('#modal-inscricao').fadeIn();
       e.preventDefault();
-      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php , .page-template-page-finalistas-php ').on('click','#fechar' ,function(e){
+      $('.page-template-page-inscritos-php , .page-template-page-cadastrados-php , .page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click','#fechar' ,function(e){
         $('#modal-inscricao').fadeOut(500);
         $('.login_overlay').fadeOut(500,function(){
           $('.login_overlay').remove()
@@ -162,14 +218,7 @@ function verifica_box(elemento){
 
 // Clique no salvar verificacao do rg
     $('.page-template-page-inscritos-php, .page-template-page-cadastrados-php').on('submit','#form-rg',function(e){
-      // alert('teste');
       var verificado = verifica_box($('#rg-verificado-checkbox'));
-      // if ($('#rg-verificado-checkbox').is(":checked")){
-      //   var verificado = 1;
-      // }
-      // else{
-      //   var verificado = 0;
-      // }
       $.ajax({
           type: 'POST',
           dataType: 'json',
@@ -185,7 +234,14 @@ function verifica_box(elemento){
             $('#modal-cadastro').fadeOut(500);
             $('.login_overlay').fadeOut(500,function(){
               $('.login_overlay').remove()
-              carrega_user(id,nome )
+							if ($('body').hasClass('page-template-page-inscritos-php')) {
+								user_id=$('#user-id-rg').val();
+								post_id=$('#post-id-rg').val();
+								carrega_inscricao(post_id,user_id,nome);
+							}
+							else {
+								carrega_user(id,nome)
+							}
             });
           }
       });
@@ -193,7 +249,8 @@ function verifica_box(elemento){
     });
 
     // marca candidato como finalista
-    $('.page-template-page-inscritos-php ').on('click','.seleciona-candidato', function(e){
+    $('.page-template-page-proj-finalistas-php, .page-template-page-inscritos-php ').on('click','.seleciona-candidato', function(e){
+			console.log('teste');
       var valor = verifica_box($(this));
       var elemento = $(this);
       $.ajax({
@@ -206,32 +263,37 @@ function verifica_box(elemento){
               'valor': valor
             },
           success: function(data){
+						if ($("body").hasClass('page-template-page-proj-finalistas-php')) {
+							location.reload();
+						}
             // if (data!=true) {
             //   $(elemento).attr('checked', false); // Unchecks it
             // }
-            console.log(data)
+            // console.log(data)
 
           }
       });
 
     });
-    $('.page-template-page-finalistas-php ').on('click', '.inscricao-finalista', function(e){
+    $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '.inscricao-finalista', function(e){
       $('.candidatos').addClass('desativado');
       $('body').prepend('<div class="login_overlay"></div>');
       $('.login_overlay').fadeIn(500);
       $('#user-loading').fadeIn(500);
-      id=$(this).attr('data-id');
+      user_id=$(this).attr('data-user-id');
+			post_id=$(this).attr('data-id');
       $.ajax({
           type: 'POST',
           dataType: 'json',
           url: ajax_bza_inscricoes_object.ajaxurl,
           data: {
-              'action': 'pegauser', //calls wp_ajax_nopriv_ajaxlogin
-              'id': id
+						'action': 'pegainscricao',
+						'user_id': user_id,
+						'post_id': post_id
             },
           success: function(data){
             window.scrollTo(0, 0);
-
+						console.log(data);
             $('#links-user #cadastro').html('<div>'+data['perfil_completo']+'</div>');
             $('#links-user #cadastro').append('<div>'+data['rg_verificado']+'</div>');
             if (data['modal_inscricao']) {
@@ -244,7 +306,7 @@ function verifica_box(elemento){
             $('#user-loading').fadeOut(500);
             $('#modal-inscricao').fadeIn();
             // $('#links-user').fadeIn();
-            $('.page-template-page-finalistas-php ').on('click', '#fechar', function(e){
+            $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '#fechar', function(e){
               $('#modal-inscricao').fadeOut(500);
               $('.login_overlay').fadeOut(500,function(){
                 $('.login_overlay').remove()
@@ -256,8 +318,9 @@ function verifica_box(elemento){
       e.preventDefault();
     });
 
-    $('.page-template-page-finalistas-php ').on('click','.cadastro-finalista', function(e){
-      $('.candidatos').addClass('desativado');
+    $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click','.cadastro-finalista', function(e){
+			console.log('cadastro');
+			$('.candidatos').addClass('desativado');
       $('body').prepend('<div class="login_overlay"></div>');
       $('.login_overlay').fadeIn(500);
       $('#user-loading').fadeIn(500);
@@ -280,7 +343,7 @@ function verifica_box(elemento){
             $('#user-loading').fadeOut(500);
             $('#modal-cadastro').fadeIn();
             // $('#links-user').fadeIn();
-            $('.page-template-page-finalistas-php ').on('click', '#fechar', function(e){
+            $('.page-template-page-finalistas-php, .page-template-page-proj-finalistas-php ').on('click', '#fechar', function(e){
               $('#modal-cadastro').fadeOut(500);
               $('.login_overlay').fadeOut(500,function(){
                 $('.login_overlay').remove()
@@ -314,7 +377,7 @@ function verifica_box(elemento){
           dataType: 'json',
           url: ajax_bza_inscricoes_object.ajaxurl,
           data: {
-              'action': 'queryuser',
+              'action': 'pegauser',
               'metas': metas,
               'page': page
             },

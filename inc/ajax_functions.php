@@ -110,6 +110,81 @@ function pega_user(){
   }
   die();
 }
+// pega user
+
+
+// Pega inscrição para a página inscritos
+// 'action': 'pegainscricao',
+// 'user_id': user_id,
+// 'post_id': post_id
+
+function pega_inscricao(){
+  if (isset($_POST['user_id'])) {
+    $user_id=$_POST['user_id'];
+		$post_id=$_POST['post_id'];
+    $rg_verificado = (1 == get_user_meta($user_id, 'rg_verificado', true)) ? '<b>RG verificado - </b> Sim' : '<b>RG verificado - </b>Não'; // $r is set to 'Yes'
+
+    $modal_cadastro='';
+    $campos_user=get_fields("user_".$user_id);
+    $perfil_completo = ( $campos_user['nome_completo']) ? '<b>Completo - </b> Sim' : '<b>Completo - </b> Não'; // $r is set to 'Yes'
+
+    foreach ($campos_user as $campo => $valor) {
+      if ($campo != 'senha' && $campo != 'confirmacao_da_senha') {
+        if ($campo == 'anexo_rg' || $campo == 'anexo_cau' ||$campo == 'anexo_cpf') {
+          $valor = '<br><img class="rg-user" src="'.$valor['url'].'">';
+        }
+        elseif($campo == 'nome_completo' && !$valor){
+          $valor = 'Usuário não adicionou nome completo';
+        }
+        $objeto_campo = get_field_object($campo,"user_".$user_id);
+        $nome_campo = $objeto_campo['label'];
+         $modal_cadastro .= '<div><b>'.$nome_campo.': </b>'.$valor.'</div>';
+        $teste[$nome_campo]=$valor;
+      }
+    }
+    $checked = (1 == get_user_meta($user_id, 'rg_verificado', true)) ? 'checked' : '';
+    $modal_cadastro .= '<form id="form-rg">
+    <div class="acf-label">
+    <label for="rg-verificado-checkbox">RG verificado</label>
+    <input type="checkbox" id="rg-verificado-checkbox" name="rg-verificado-checkbox" value="1" '.$checked.' >
+		<input type="hidden" id="user-id-rg" name="user-id-rg" value="'.$user_id.'" >
+		<input type="hidden" id="post-id-rg" name="post-id-rg" value="'.$post_id.'" >
+    <input type="submit" id="rg-verificado-submit" name="rg-verificado-submit" value="Salvar" >
+    </div>
+    </form>
+    ';
+    $post=get_post( $post_id );
+		$campos_inscricao=get_fields($post->ID);
+		foreach ($campos_inscricao as $campo_insc => $valor_insc) {
+			if ($campo_insc == 'anexo_do_projeto') {
+				$path = parse_url($valor_insc['url'], PHP_URL_PATH);
+				$path = explode('&',$path);
+				$filename = $path[0];
+				$valor_insc = '<a target="_blank" href="'.$valor_insc['url'].'">'.basename($filename).'</a>';
+			}
+			if ($campo_insc == 'nome_do_projeto') {
+				$objeto_campo = get_field_object($campo_insc,$post->ID);
+				$nome_campo = $objeto_campo['label'];
+				$modal_inscricao .= '<br><div><b>'.$nome_campo.': </b><h3>'.$valor_insc.'</h3></div>';
+			}
+			else{
+				$objeto_campo = get_field_object($campo_insc,$post->ID);
+				$nome_campo = $objeto_campo['label'];
+				$modal_inscricao .= '<div><b>'.$nome_campo.': </b>'.$valor_insc.'</div>';
+				$teste=$post->ID;
+			}
+		}
+    echo json_encode(array('rg_verificado'=>$rg_verificado,'id'=>$user_id, 'perfil_completo'=>$perfil_completo, 'inscricao_completa'=>$inscricao_completa,'modal_cadastro'=>$modal_cadastro, 'modal_inscricao'=>$modal_inscricao, 'message'=>__('Sucesso!')));
+  }
+  else {
+    echo json_encode(array('id'=>'nao sssei', 'message'=>__('duh!')));
+  }
+  die();
+}
+// pega inscricao
+
+
+
 
 function salva_rg(){
   $resultado = update_user_meta( $_POST['id'], 'rg_verificado', $_POST['verificado'] );
@@ -125,12 +200,13 @@ function marca_finalista(){
   //   echo json_encode('Já existem oito candidatos selecionados');
   // }
   // else {
-    $resultado = update_user_meta( $_POST['id'], 'finalista', $_POST['valor'] );
+    $resultado = update_post_meta( $_POST['id'], 'finalista', $_POST['valor'] );
     echo json_encode($resultado);
   // }
     die();
 }
-// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas
 function query_user_ajax(){
   $args = array(
       'role'         => 'candidato',
@@ -178,18 +254,20 @@ function query_user_ajax(){
         ),
       );
       $query = new WP_Query( $args );
-      if($query->post_count != 0 ){
-        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
-        $inscritos .= '<div id="'.$value->ID.'" class="candidato">';
-        $user_id = $value->ID;
-        $inscritos .= '  <a href="#" class="user_ajax" data-id="'.$user_id.'">';
-        $inscritos .=  $user_nome;
-        $inscritos .=  '</a>';
-        $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';
-        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$user_id.'" id="user_'. $user_id.'"  value="1" '. $checked.'/>';
-        $inscritos .=  '  <label for="user_'.$user_id.'">';
-        $inscritos .=  '   </div>';
-      }
+			if($query->post_count != 0 ){
+				foreach ($query->posts as $post) {
+					$user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
+	        $inscritos .= '<div id="'.$value->ID.'" class="candidato">';
+	        $user_id = $value->ID;
+	        $inscritos .= '  					<a href="#" class="inscricao_ajax" data-user-id="'.$user_id.'" data-id="'.$post->ID.'">';
+	        $inscritos .=  $user_nome." - ". get_field('nome_do_projeto',  $post->ID );
+	        $inscritos .=  '</a>';
+	        $checked = (1 == get_post_meta($post->ID, 'finalista', true)) ? 'checked' : '';
+	        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$user_id.'" id="user_'. $user_id.'"  value="1" '. $checked.'/>';
+	        $inscritos .=  '  <label for="user_'.$user_id.'">';
+	        $inscritos .=  '   </div>';
+				}
+			}
       else{
         $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
         $cadastrados .= '<div id="'.$value->ID.'" class="candidato">';
@@ -221,3 +299,5 @@ function query_user_ajax(){
 
   die();
 }
+// pega usuario com base nos metas// pega usuario com base nos metas
+// pega usuario com base nos metas// pega usuario com base nos metas
