@@ -263,8 +263,8 @@ function query_user_ajax(){
 	        $inscritos .=  $user_nome." - ". get_field('nome_do_projeto',  $post->ID );
 	        $inscritos .=  '</a>';
 	        $checked = (1 == get_post_meta($post->ID, 'finalista', true)) ? 'checked' : '';
-	        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$user_id.'" id="user_'. $user_id.'"  value="1" '. $checked.'/>';
-	        $inscritos .=  '  <label for="user_'.$user_id.'">';
+	        $inscritos .=  '<input class="seleciona-candidato" type="checkbox" data-id="'.$post->ID.'" id="user_'. $post->ID.'"  value="1" '. $checked.'/>';
+	        $inscritos .=  '  <label for="user_'.$post->ID.'">';
 	        $inscritos .=  '   </div>';
 				}
 			}

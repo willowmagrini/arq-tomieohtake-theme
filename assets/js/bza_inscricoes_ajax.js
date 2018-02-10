@@ -377,7 +377,7 @@ function verifica_box(elemento){
           dataType: 'json',
           url: ajax_bza_inscricoes_object.ajaxurl,
           data: {
-              'action': 'pegauser',
+              'action': 'queryuser',
               'metas': metas,
               'page': page
             },
