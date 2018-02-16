@@ -14,12 +14,17 @@
             <div class="container">
             <hr>
                 <div class="row logos">
-                    <div class="col-md-2">
-                        <h3>PATROCÍNIO<br>&nbsp;</h3>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_akzonobel_gde.png" style="width: 160px;">
+                 	<div class="col-md-2">
+                 		<h3>&nbsp;</h3>
+                 		<h3>&nbsp;</h3>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_rouanet.png" style="width: 80px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_proacsp.png" style="width: 80px;">
                     </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <h3>PATROCÍNIO<br>&nbsp;</h3>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_akzonobel_gde.png" style="width: 220px;">
+                    </div>
+                    <div class="col-md-3">
                         <h3>APOIO DE MÍDIA<br>&nbsp;</h3>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_arco.png" style="width: 80px; float: left;">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_archdaily.png" style="width: 80px; float: left;">
@@ -33,16 +38,10 @@
                         <h3>IDEALIZAÇÃO E<br> COORDENAÇÃO</h3>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_tomie.png" style="width: 160px;">
                     </div>
-                     <div class="col-md-4">
+                     <div class="col-md-2">
                         <h3>REALIZAÇÃO</h3>
-                        <div class="col-md-6">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_proacsp.png" style="width: 80px;">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_govsp.png" style="width: 160px;">
-                        </div>
-                        <div class="col-md-6">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_rouanet.png" style="width: 80px;">
-                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_minc.png" style="width: 160px;">
-                        </div>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_govsp.png" style="width: 160px; float: left;">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_minc.png" style="width: 160px;">
                     </div>
                 </div>
                 <hr>
