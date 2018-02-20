@@ -40,6 +40,7 @@
                     </div>
                      <div class="col-md-2">
                         <h3>REALIZAÇÃO</h3>
+                        <h3>&nbsp;</h3>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_govsp.png" style="width: 160px; float: left;">
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_paitoan_logo_minc.png" style="width: 160px;">
                     </div>
