@@ -9,11 +9,14 @@
 get_header('inscricao'); ?>
 
 	<div id="content" class="site-content">
-<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full', true )):?>
-		<div class="page-fullheader">
-		 <img src="<?php echo $img[0];?>"/>
-		</div>
-		<?php endif;?>
+		<div class="page-header">
+      <div class="container">
+        <h1 class="page-title">Dados do arquiteto</h1>
+      </div><!-- container -->
+    </div><!-- page-header -->
+		<?php if ( function_exists( 'coletivo_breadcrumb' ) ) : ?>
+      <?php echo coletivo_breadcrumb(); ?>
+    <?php endif; ?>
 		<div id="content-inside" class="container container-form no-sidebar">
 		<h2 class="fullheader-title">
 			<?php
