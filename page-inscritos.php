@@ -32,6 +32,8 @@ get_header('inscricao'); ?>
 				<main id="main" class="site-main" role="main">
             <div class="candidatos-lista col-md-6">
             <h2 class="fullheader-title">Lista <a class="btn btn-theme-primary" href="<?php echo get_permalink(); ?>">Ver todos</a></h2>
+						<?php echo "número total de candidatos com projetos: ".cont_proj();?>
+
               <form class="" action="" method="get">
                 <input id="busca-nome" type="text" name="nome" value="">
                 <input type="submit" id="label-busca-nome" value="">
@@ -92,7 +94,6 @@ get_header('inscricao'); ?>
                 }
 
                 $candidatos = get_users($args);
-								$contador = 0;
                 foreach ($candidatos as $candidato => $value) {
 									$args = array(
 										'post_type'              => array( 'bza_inscricoes' ),
@@ -107,7 +108,6 @@ get_header('inscricao'); ?>
 									);
 									$query = new WP_Query( $args );
 									if($query->post_count != 0 ){
-										$contador++;
 	                  ?>
 	                    <?php
 	                    $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
@@ -140,7 +140,6 @@ get_header('inscricao'); ?>
 	                <?php
 									}
                 } //fecha foreach ($candidatos as $candidato => $value)
-								echo "número total de candidatos com projetos: ".$contador;
               ?>
             </div>
 					</div>

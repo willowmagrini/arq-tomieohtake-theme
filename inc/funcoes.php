@@ -465,3 +465,30 @@ function email_confirma_user($email){
 //    'meta_post_2'=>'meta_2',
 //   ),
 // )
+
+function cont_proj(){
+		$args = array(
+				'role'         => 'candidato',
+		);
+
+		$candidatos = get_users($args);
+		$contador = 0;
+		foreach ($candidatos as $candidato => $value) {
+			$args = array(
+				'post_type'              => array( 'bza_inscricoes' ),
+				'author'            => $value->ID,
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'category',
+						'field'    => 'name',
+						'terms'    => '2018',
+					),
+				),
+			);
+			$query = new WP_Query( $args );
+			if($query->post_count != 0 ){
+				$contador++;
+			}
+		}
+		return $contador;
+}
