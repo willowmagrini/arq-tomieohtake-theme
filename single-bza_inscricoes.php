@@ -22,7 +22,7 @@
 
     <div class="page-header">
       <div class="container">
-        <h1 class="page-title">Inscrição</h1>
+        <h1 class="page-title">Inscrição do projeto</h1>
       </div><!-- container -->
     </div><!-- page-header -->
 
@@ -46,7 +46,7 @@
 
 					acf_form(array(
   					'post_id'		=> 'post_'.$post_id,
-            'field_groups' => array(395),
+            'field_groups' => array('group_5a79ea08c499c'),
   					'submit_value'		=> 'Atualizar',
             'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
             'updated_message' => __("Inscrição atualizada!", 'acf'),

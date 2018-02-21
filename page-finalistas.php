@@ -57,8 +57,8 @@ get_header('inscricao'); ?>
                     <a href="#" class="user_ajax" data-id="<?php echo $user_id;?>">
                       <?php echo $user_nome; ?>
                     </a>
-										<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary">Ver cadastro</button>
-										<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary inscricao-finalista">Ver Inscrições</button>
+										<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary">DADOS ARQUITETO PROPONENTE</button>
+										<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary inscricao-finalista">DADOS PROJETO</button>
 
                     <?php $checked = (1 == get_user_meta($user_id, 'finalista', true)) ? 'checked' : '';?>
                       <input class="seleciona-candidato" type="checkbox" data-id="<?php echo $user_id;?>" id="user_<?php echo $user_id;?>"  value="1" <?php echo $checked ?> disabled/>

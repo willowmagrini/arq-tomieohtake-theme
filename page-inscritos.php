@@ -142,7 +142,7 @@ get_header('inscricao'); ?>
             </div>
 					</div>
 					<div class="col-md-6" id="mostra-user-ajax">
-					<h2 class="fullheader-title">Inscrição</h2>
+					<h2 class="fullheader-title">Inscrição do projeto</h2>
           <div id="dados-user">
             <h3 id="nome-user">Escolha um usuário para visualizar</h3>
             <div id="links-user">

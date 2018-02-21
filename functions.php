@@ -63,7 +63,7 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
                                 echo $nome;
                                 ?>.</li>
                                 <li id="user-menu-inscritos" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/inscritos">Inscritos</a></li>
-                                <li id="user-menu-finalistas" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/finalistas">Selecionados</a></li>
+                                <li id="user-menu-finalistas" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/projetos-finalistas">Selecionados</a></li>
                             </ul>
                         </nav>
 
@@ -79,8 +79,8 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
                               	$nome= km_get_users_name($current_user->ID) ;
                                 echo $nome;
                                 ?>.</li>
-                                <li id="user-menu-inscricao" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/inscricoes">Inscrições</a></li>
-                                <li id="user-menu-cadastro" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/cadastro-edicao-de-usuarios/">Cadastro</a></li>
+                                <li id="user-menu-inscricao" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/projetos">Projetos</a></li>
+                                <li id="user-menu-cadastro" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?php echo get_home_url() ?>/cadastro-edicao-de-usuarios/">Dados do arquiteto</a></li>
                             </ul>
                         </nav>
                       <?php

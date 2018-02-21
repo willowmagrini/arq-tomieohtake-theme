@@ -231,8 +231,8 @@ add_action( 'acf/pre_save_post', 'trac_update_userdata', 1 );
 
 function my_acf_save_post( $post_id )
 {
-    if (strpos($post_id, 'user_') !== false && isset($_POST['acf']['field_59fbfafd7b7da'])) {
-      wp_redirect(get_home_url().'/inscricao'); exit;
+    if (strpos($post_id, 'user_') !== false && isset($_POST['acf']['field_5a79e2c58ab9f'])) {
+      wp_redirect(get_home_url().'/projetos'); exit;
     }
 
 }
@@ -322,16 +322,16 @@ function username_validation( $valid, $value, $field, $input ){
 	return $valid;
 
 }
-add_filter('acf/validate_value/key=field_59fbfb077b7db', 'date_validation', 10, 4);
+add_filter('acf/validate_value/key=field_5a7a273635cec', 'date_validation', 10, 4);
 function date_validation( $valid, $value, $field, $input ){
   $data_final=date("Ymd", strtotime("-18 year"));
   $data_inicial= date("Ymd", strtotime("-27 year"));
   if(strtotime($value) > strtotime(date("Ymd") )){
     return 'Por favor escolha uma data no passado.';
   }
-  elseif (strtotime($value) > strtotime('19991223' ) || strtotime($value) < strtotime('19891223' )){
+  elseif (strtotime($value) > strtotime('20180222' ) || strtotime($value) < strtotime('20080101' )){
 
-    return 'A inscrição é valida para jovens artistas de 18 a 27 anos.';
+    return 'Somente dão permitidas obras construídas nos últimos 10 anos';
   }
   return $valid;
 

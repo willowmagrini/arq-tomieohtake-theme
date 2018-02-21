@@ -15,8 +15,8 @@
 }
 	$csv_array = array(
 						array(
-							"email","nome","data_de_nascimento","nacionalidade","genero","nec_esp","recurso_especifico","cep","uf","cidade","bairro","rua","numero","complemento","telefone","formação","conclusao","cau","rg","cpf","como","anexo_rg","anexo_cau","anexo_cpf",
-							"nome_do_projeto","tipo_de_inscricao","nome_do_escritorio_ou_coletivo","equipe__autores","colaboradores","autoria_complementares","tipo_de_projeto","localizacao_do_projeto","finalizacao_da_obra","anexo_do_projeto"
+							"email","nome","data_de_nascimento","nacionalidade","genero","nec_esp","recurso_especifico","cep","uf","cidade","Endereço completo","telefone","formação","conclusao","cau","rg","cpf","anexo_rg","anexo_cau","anexo_cpf","como",
+							"nome_do_projeto","tipo_de_inscricao","nome_do_escritorio_ou_coletivo","equipe__autores","autoria_complementares","tipo_de_projeto","localizacao_do_projeto","finalizacao_da_obra","anexo_do_projeto"
 
 									)
 							);

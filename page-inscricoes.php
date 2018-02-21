@@ -43,7 +43,7 @@ get_header('inscricao'); ?>
 	<div id="content" class="site-content">
 	    <div class="page-header">
 	      <div class="container">
-	        <h1 class="page-title">Inscrição</h1>
+	        <h1 class="page-title">Inscrição de projetos</h1>
 	      </div><!-- container -->
 	    </div><!-- page-header -->
 
@@ -57,7 +57,7 @@ get_header('inscricao'); ?>
 
 					acf_form(array(
   					'post_id'		=> 'new_post_'.$user_id,
-            'field_groups' => array(395),
+            'field_groups' => array('group_5a79ea08c499c'),
 
   					'new_post'		=> array(
   						'post_type'		=> 'bza_inscricoes',
@@ -65,7 +65,7 @@ get_header('inscricao'); ?>
   					),
   					'submit_value'		=> 'Inscrever',
 						'return' => get_home_url().'/inscricao-efetuada',
-						'html_after_fields' => '<input type="hidden" name="post_category" value="Inscrição EDP nas Artes"/>',
+						'html_after_fields' => '<input type="hidden" name="post_category" value="2018"/>',
 
   				)); ?>
        	 		<br />
