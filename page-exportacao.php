@@ -46,18 +46,19 @@
 		$inscricoes = get_posts( array('author' =>  $candidato->ID, 'post_type' => 'bza_inscricoes') );
 
 		if ($inscricoes == array()) {
-			array_push($csv_array, $candidato_array);
+			// array_push($csv_array, $candidato_array);
 		}
 		else{
 			foreach ($inscricoes as $inscricao ) {
+				$projeto = $candidato_array;
 				$post_meta=get_fields( $inscricao->ID );
 				foreach ($post_meta as $key => $value) {
 					if ($key == 'anexo_do_projeto') {
 						$value = $value['url'];
 					}
-					array_push($candidato_array, $value);
+					array_push($projeto, $value);
 				}
-				array_push($csv_array, $candidato_array);
+				array_push($csv_array, $projeto);
 			}
 		}
 	}
