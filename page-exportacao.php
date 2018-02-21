@@ -66,7 +66,9 @@
 	// echo "<pre>";
 	// print_r($csv_array);
 	// echo "</pre>";
-	$fp = fopen('incricoes.csv', 'w');
+	$uploads = wp_upload_dir();
+
+	$fp = fopen($uploads['basedir'].'/incricoes.csv', 'w');
 
 	foreach ($csv_array as $fields) {
 			fputcsv($fp, $fields);
@@ -76,5 +78,5 @@
 	header('Content-Type: application/csv');
 header('Content-Disposition: attachment; filename=incricoes.csv');
 header('Pragma: no-cache');
-readfile("incricoes.csv");
+readfile($uploads['basedir'].'/incricoes.csv');
 ?>

@@ -19,7 +19,7 @@ get_header(); ?>
 			<div class="container">
 				<h1 class="page-title">Projetos</h1>
 				<?php $countPosts = $wp_the_query->post_count;
-					if ($countPosts < 5) {?>
+					if ($countPosts < 5 && $countPosts > 0) {?>
 						<p><?php echo 'Quer inscrever outro projeto?  Clique <a href="'.get_home_url().'/inscricao">aqui!</a>'; ?></p>
 						<?php
 					}

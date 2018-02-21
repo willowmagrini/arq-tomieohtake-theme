@@ -52,7 +52,7 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
                     </nav>
                     <?php
                     if (is_user_logged_in()) {
-                      if (current_user_can( 'jurado')) {?>
+                      if (current_user_can( 'jurado') || current_user_can( 'administrator')) {?>
 
                         <nav id="user-navigation" class="main-navigation" role="navigation">
                             <ul class="user-menu coletivo-menu">

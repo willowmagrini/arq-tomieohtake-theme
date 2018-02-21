@@ -331,7 +331,7 @@ function date_validation( $valid, $value, $field, $input ){
   }
   elseif (strtotime($value) > strtotime('20180222' ) || strtotime($value) < strtotime('20080101' )){
 
-    return 'Somente dão permitidas obras construídas nos últimos 10 anos';
+    return 'Somente são permitidas obras construídas nos últimos 10 anos';
   }
   return $valid;
 
@@ -428,8 +428,8 @@ add_filter('acf/pre_save_post' , 'honeypot', 10, 1 );
 
 // email de confirmacao
 function email_confirma_user($email){
-  $subject = 'Inscrição Prêmio EDP nas Artes';
-  $message = 'Você está inscrito.';
+  $subject = 'Prêmio De Arquitetura Instituto Tomie Ohtake Akzonobel';
+  $message = 'Projeto.';
   $body = file_get_contents(get_stylesheet_directory() . '/inc/email-user.php');
   function usar_html(){
       return "text/html";
