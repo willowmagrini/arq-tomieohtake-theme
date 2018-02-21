@@ -32,6 +32,8 @@ get_header('inscricao'); ?>
 				<main id="main" class="site-main" role="main">
             <div class="candidatos-lista col-md-6">
             <h2 class="fullheader-title">Lista <a class="btn btn-theme-primary" href="<?php echo get_permalink(); ?>">Ver todos</a></h2>
+						<?php echo "número total de candidatos com projetos: ".cont_proj();?>
+
               <form class="" action="" method="get">
                 <input id="busca-nome" type="text" name="nome" value="">
                 <input type="submit" id="label-busca-nome" value="">
@@ -137,12 +139,12 @@ get_header('inscricao'); ?>
 	                    ?>
 	                <?php
 									}
-                }
+                } //fecha foreach ($candidatos as $candidato => $value)
               ?>
             </div>
 					</div>
 					<div class="col-md-6" id="mostra-user-ajax">
-					<h2 class="fullheader-title">Inscrição</h2>
+					<h2 class="fullheader-title">Inscrição do projeto</h2>
           <div id="dados-user">
             <h3 id="nome-user">Escolha um usuário para visualizar</h3>
             <div id="links-user">

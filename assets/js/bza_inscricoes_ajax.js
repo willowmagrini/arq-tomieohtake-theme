@@ -84,14 +84,14 @@ jQuery(document).ready(function($) {
           success: function(data){
             $('#links-user #cadastro').html('<div>'+data['perfil_completo']+'</div>');
             $('#links-user #cadastro').append('<div>'+data['rg_verificado']+'</div>');
-            $('#links-user #cadastro').append('<div><button class="btn btn-theme-primary">Ver cadastro</button></div>');
+            $('#links-user #cadastro').append('<div><button class="btn btn-theme-primary">Ver DADOS ARQUITETO PROPONENTE</button></div>');
             if (data['modal_inscricao']) {
-              $('#links-user #inscricao').html('<div><b>Inscrição - </b>  Completa</div>');
+              $('#links-user #inscricao').html('<div><b>Inscrição de projeto - </b>  Completa</div>');
               // $('#links-user #inscricao').html('<div>'+data['inscricao_completa']+'</div>');
-              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrição</button></div>');
+              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">DADOS PROJETO</button></div>');
             }
             else{
-              $('#links-user #inscricao').html('<div>O candidato não fez uma inscrição</div>');
+              $('#links-user #inscricao').html('<div>O candidato não inscreveu nenhum projeto</div>');
             }
             $('#user-loading').fadeOut(500);
             $('.candidatos').removeClass('desativado');
@@ -125,14 +125,14 @@ jQuery(document).ready(function($) {
           success: function(data){
             $('#links-user #cadastro').html('<div>'+data['perfil_completo']+'</div>');
             $('#links-user #cadastro').append('<div>'+data['rg_verificado']+'</div>');
-            $('#links-user #cadastro').append('<div><button class="btn btn-theme-primary">Ver cadastro</button></div>');
+            $('#links-user #cadastro').append('<div><button class="btn btn-theme-primary">DADOS ARQUITETO PROPONENTE</button></div>');
             if (data['modal_inscricao']) {
-              $('#links-user #inscricao').html('<div><b>Inscrição - </b>  Completa</div>');
+              $('#links-user #inscricao').html('<div><b>Inscrição de projeto - </b>  Completa</div>');
               // $('#links-user #inscricao').html('<div>'+data['inscricao_completa']+'</div>');
-              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">Ver Inscrição</button></div>');
+              $('#links-user #inscricao').append('<div><button class="btn btn-theme-primary">DADOS PROJETO</button></div>');
             }
             else{
-              $('#links-user #inscricao').html('<div>O candidato não fez uma inscrição</div>');
+              $('#links-user #inscricao').html('<div>O candidato não inscreveu nenhum projeto</div>');
             }
             $('#user-loading').fadeOut(500);
             $('.candidatos').removeClass('desativado');
@@ -300,7 +300,7 @@ function verifica_box(elemento){
               $('#modal-inscricao').html('<a id="fechar" href="#">X</a>'+data['modal_inscricao']);
             }
             else{
-              $('#modal-inscricao').html('<a id="fechar" href="#">X</a><div>O candidato não fez uma inscrição</div>');
+              $('#modal-inscricao').html('<a id="fechar" href="#">X</a><div>O candidato não inscreveu nenhum projeto</div>');
             }
             $('.candidatos').removeClass('desativado');
             $('#user-loading').fadeOut(500);

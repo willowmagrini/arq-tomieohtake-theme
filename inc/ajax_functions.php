@@ -92,12 +92,7 @@ function pega_user(){
 					}
 	      }
 			}
-      // $inscricao_completa=(1 == $meta = get_post_meta($post->ID, "inscricao_completa", true)) ? '<b>Inscrição - </b>  Completa' : '<b>Inscrição - </b>Incompleta'; // $r is set to 'Yes'
 
-      // $modal_inscricao .= '<div class="acf-label">
-      // <label for="inscricao-completa-checkbox">Inscrição completa</label>
-      // <input type="checkbox" id="inscricao-completa-checkbox" name="inscricao-completa-checkbox" value="1" >
-      // </div>';
 
   	}
     else{
@@ -269,7 +264,7 @@ function query_user_ajax(){
 				}
 			}
       else{
-        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou a inscrição.';
+        $user_nome = ( get_field('nome', 'user_'.$value->ID) ) ? get_field('nome', 'user_'.$value->ID) : 'Usuário não completou o cadastro.';
         $cadastrados .= '<div id="'.$value->ID.'" class="candidato">';
         $user_id = $value->ID;
         $cadastrados .= '  <a href="#" class="user_ajax" data-id="'.$user_id.'">';

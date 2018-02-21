@@ -17,7 +17,14 @@ get_header(); ?>
 
 		<div class="page-header">
 			<div class="container">
-				<h1 class="page-title">Inscrições</h1>
+				<h1 class="page-title">Projetos</h1>
+				<?php $countPosts = $wp_the_query->post_count;
+					if ($countPosts < 5) {?>
+						<p><?php echo 'Quer inscrever outro projeto?  Clique <a href="'.get_home_url().'/inscricao">aqui!</a>'; ?></p>
+						<?php
+					}
+				 ?>
+
 			</div><!-- container -->
 		</div><!-- page-header -->
 
@@ -53,7 +60,7 @@ get_header(); ?>
 								<div class="list-article-meta">
 									<?php
 										$categorias=get_the_category();
-										print_r( $categorias[0]->name);
+										// print_r( $categorias[0]->name);
 									 ?>
 								</div>
 								<header class="entry-header">
@@ -78,7 +85,7 @@ get_header(); ?>
 
 					<?php endwhile; ?>
 					<div class="clearfix"></div>
-					<p><?php echo 'Quer inscrever outro projeto?  Clique <a href="'.get_home_url().'/inscricao">aqui!</a>'; ?></p>
+
 
 					<?php the_posts_navigation(); ?>
 
@@ -87,10 +94,10 @@ get_header(); ?>
 
 					<section class="no-results not-found">
 
-						<h2><?php esc_html_e( 'Nenhuma inscrição.', 'coletivo' ); ?></h2>
+						<h2><?php esc_html_e( 'Nenhum projeto cadastrado.', 'coletivo' ); ?></h2>
 						<div class="page-content">
 
-								<p><?php echo 'Você não está inscrito. Clique <a href="'.get_home_url().'/inscricao">aqui para se inscrever</a>'; ?></p>
+								<p><?php echo 'Você não tem projetos inscritos. Clique <a href="'.get_home_url().'/inscricao">aqui para se inscrever</a>'; ?></p>
 
 						</div><!-- .page-content -->
 					</section><!-- .no-results -->

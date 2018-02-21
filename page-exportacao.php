@@ -15,8 +15,8 @@
 }
 	$csv_array = array(
 						array(
-							"email","nome","data_de_nascimento","nacionalidade","genero","nec_esp","recurso_especifico","cep","uf","cidade","bairro","rua","numero","complemento","telefone","formação","conclusao","cau","rg","cpf","como","anexo_rg","anexo_cau","anexo_cpf",
-							"nome_do_projeto","tipo_de_inscricao","nome_do_escritorio_ou_coletivo","equipe__autores","colaboradores","autoria_complementares","tipo_de_projeto","localizacao_do_projeto","finalizacao_da_obra","anexo_do_projeto"
+							"email","nome","data_de_nascimento","nacionalidade","genero","nec_esp","recurso_especifico","cep","uf","cidade","Endereço completo","telefone","formação","conclusao","cau","rg","cpf","anexo_rg","anexo_cau","anexo_cpf","como",
+							"nome_do_projeto","tipo_de_inscricao","nome_do_escritorio_ou_coletivo","equipe__autores","autoria_complementares","tipo_de_projeto","localizacao_do_projeto","finalizacao_da_obra","anexo_do_projeto"
 
 									)
 							);
@@ -46,18 +46,19 @@
 		$inscricoes = get_posts( array('author' =>  $candidato->ID, 'post_type' => 'bza_inscricoes') );
 
 		if ($inscricoes == array()) {
-			array_push($csv_array, $candidato_array);
+			// array_push($csv_array, $candidato_array);
 		}
 		else{
 			foreach ($inscricoes as $inscricao ) {
+				$projeto = $candidato_array;
 				$post_meta=get_fields( $inscricao->ID );
 				foreach ($post_meta as $key => $value) {
 					if ($key == 'anexo_do_projeto') {
 						$value = $value['url'];
 					}
-					array_push($candidato_array, $value);
+					array_push($projeto, $value);
 				}
-				array_push($csv_array, $candidato_array);
+				array_push($csv_array, $projeto);
 			}
 		}
 	}

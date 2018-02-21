@@ -64,8 +64,8 @@ get_header('inscricao'); ?>
 												<?php echo $user_nome." - ". get_field('nome_do_projeto',  $post->ID ); ?>
 											</a>
 											<?php $checked = (1 == get_post_meta($post->ID, 'finalista', true)) ? 'checked' : '';?>
-											<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary cadastro-finalista">Ver cadastro</button>
-											<button data-user-id="<?php echo $user_id;?>" data-id="<?php echo $post->ID;?>" class="btn btn-theme-primary inscricao-finalista">Ver Inscrições</button>
+											<button data-id="<?php echo $user_id;?>" class="btn btn-theme-primary cadastro-finalista">DADOS ARQUITETO PROPONENTE</button>
+											<button data-user-id="<?php echo $user_id;?>" data-id="<?php echo $post->ID;?>" class="btn btn-theme-primary inscricao-finalista">DADOS PROJETO</button>
 
 											<?php $checked = (1 == get_post_meta($post->ID, 'finalista', true)) ? 'checked' : '';?>
 											<input class="seleciona-candidato" type="checkbox" data-id="<?php echo $post->ID;?>" id="user_<?php echo $post->ID;?>"  value="1" <?php echo $checked ?>/>
