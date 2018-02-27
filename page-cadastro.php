@@ -10,7 +10,7 @@ get_header('inscricao'); ?>
 
 	<div id="content" class="site-content">
 		<div class="page-header">
-      <div class="container">
+      <div class="container container-form no-sidebar">
         <h1 class="page-title">Dados do arquiteto</h1>
       </div><!-- container -->
     </div><!-- page-header -->
