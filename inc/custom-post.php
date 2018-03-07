@@ -819,6 +819,26 @@ acf_add_local_field_group(array (
 			'max_size' => 50,
 			'mime_types' => 'pdf',
 		),
+		array (
+			'key' => 'field_5a96f5ede7123',
+			'label' => 'Link do vídeo',
+			'name' => 'link_do_video',
+			'type' => 'text',
+			'value' => NULL,
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
 	),
 	'location' => array (
 		array (
