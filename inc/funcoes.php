@@ -492,3 +492,13 @@ function cont_proj(){
 		}
 		return $contador;
 }
+add_action( 'admin_menu', 'linked_url' );
+    function linked_url() {
+    add_menu_page( 'linked_url', 'Exportar CSV', 'read', 'my_slug', '', 'dashicons-text', 1 );
+    }
+
+    add_action( 'admin_menu' , 'linkedurl_function' );
+    function linkedurl_function() {
+    global $menu;
+    $menu[1][2] = get_home_url()."/exportar-csv/";
+    }
