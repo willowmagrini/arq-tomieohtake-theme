@@ -34,19 +34,12 @@
 				continue;
 			}
 			array_push($candidato_array, $value);
-			// print_r($meta_keys);
 
-			// $csv .= $value.', ';
 		}
-		// print_r($list);
-		// echo '<br><br>';
-		// echo "<pre>";
-		// print_r($candidato_array);
-		// echo "</pre>";
+
 		$inscricoes = get_posts( array('author' =>  $candidato->ID, 'post_type' => 'bza_inscricoes') );
 
 		if ($inscricoes == array()) {
-			// array_push($csv_array, $candidato_array);
 		}
 		else{
 			foreach ($inscricoes as $inscricao ) {
@@ -62,13 +55,10 @@
 			}
 		}
 	}
-	// echo '<br><br>';
-	// echo "<pre>";
-	// print_r($csv_array);
-	// echo "</pre>";
+
 	$uploads = wp_upload_dir();
 
-	$fp = fopen($uploads['basedir'].'/incricoes.csv', 'w');
+	$fp = fopen($uploads['path'].'/incricoes.csv', 'w');
 
 	foreach ($csv_array as $fields) {
 			fputcsv($fp, $fields);
@@ -76,7 +66,8 @@
 
 	fclose($fp);
 	header('Content-Type: application/csv');
-header('Content-Disposition: attachment; filename=incricoes.csv');
-header('Pragma: no-cache');
-readfile($uploads['basedir'].'/incricoes.csv');
+	header('Content-Disposition: attachment; filename=incricoes.csv');
+	header('Pragma: no-cache');
+	$teste=file_get_contents($uploads['path'].'/incricoes.csv');
+	echo $teste;
 ?>

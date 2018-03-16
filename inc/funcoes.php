@@ -492,3 +492,20 @@ function cont_proj(){
 		}
 		return $contador;
 }
+// add_action('admin_menu', 'add_custom_link_into_appearnace_menu');
+// function add_custom_link_into_appearnace_menu() {
+//     global $submenu;
+//     $permalink = get_home_url( ). '/exportar-csv/';
+//     $submenu['tools.php'][] = array( 'Exportar CSV', 'manage_options', $permalink );
+// }
+
+add_action( 'admin_menu', 'linked_url' );
+   function linked_url() {
+   add_menu_page( 'linked_url', 'Exportar CSV', 'read', 'my_slug', '', 'dashicons-text', 76 );
+   }
+
+   add_action( 'admin_menu' , 'linkedurl_function' );
+   function linkedurl_function() {
+   global $menu;
+   $menu[76][2] = get_home_url( ). '/exportar-csv/';
+   }
