@@ -97,7 +97,51 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
     }
 }
 add_action( 'coletivo_site_header', 'coletivo_site_header' );
-//plugin
+
+// Register Custom Post Type
+function post_type_premios() {
+
+  $labels = array(
+    'name'                => _x( 'Prêmios', 'Post Type General Name', 'tema-coletivo' ),
+    'singular_name'       => _x( 'Prêmios', 'Post Type Singular Name', 'tema-coletivo' ),
+    'menu_name'           => __( 'Prêmios', 'tema-brasa' ),
+    'parent_item_colon'   => __( 'Item parente', 'tema-coletivo' ),
+    'all_items'           => __( 'Todos prêmios', 'tema-coletivo' ),
+    'view_item'           => __( 'Ver prêmio', 'tema-coletivo' ),
+    'add_new_item'        => __( 'Adicionar novo prêmio', 'tema-coletivo' ),
+    'add_new'             => __( 'Adicionar novo', 'tema-coletivo' ),
+    'edit_item'           => __( 'Editar item', 'tema-coletivo' ),
+    'update_item'         => __( 'Atualizar item', 'tema-coletivo' ),
+    'search_items'        => __( 'Buscar prêmio', 'tema-coletivo' ),
+    'not_found'           => __( 'Não encontrado', 'tema-coletivo' ),
+    'not_found_in_trash'  => __( 'Não encontrado na lixeira', 'tema-coletivo' ),
+  );
+  $args = array(
+    'labels'              => $labels,
+    'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions' ,),
+    'hierarchical'        => false,
+    'public'              => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_nav_menus'   => true,
+    'show_in_admin_bar'   => true,
+    'menu_position'       => 20,
+    'menu_icon'           => 'dashicons-images-alt2',
+    'can_export'          => true,
+    'has_archive'         => 'premios',
+    'exclude_from_search' => false,
+    'publicly_queryable'  => true,
+    'capability_type'     => 'page',
+  );
+  register_post_type( 'premios', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'post_type_premios', 1 );
+
+
+//plugin inscricoes
 require get_stylesheet_directory() . '/inc/custom-post.php';
 require get_stylesheet_directory() . '/inc/ajax_functions.php';
 require get_stylesheet_directory() . '/inc/funcoes.php';
