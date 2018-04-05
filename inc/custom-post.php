@@ -787,7 +787,7 @@ acf_add_local_field_group(array (
 			'name' => 'finalizacao_da_obra',
 			'type' => 'date_picker',
 			'value' => NULL,
-			'instructions' => '',
+			'instructions' => 'Clique no campo e escolha uma data',
 			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array (
