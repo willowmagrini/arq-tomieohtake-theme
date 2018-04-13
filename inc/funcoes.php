@@ -326,12 +326,16 @@ add_filter('acf/validate_value/key=field_5a7a273635cec', 'date_validation', 10, 
 function date_validation( $valid, $value, $field, $input ){
   $data_final=date("Ymd", strtotime("-18 year"));
   $data_inicial= date("Ymd", strtotime("-27 year"));
+	if (strlen($value) < 8) {
+		return 'Você deve selecionar uma data no calendário.';
+
+	}
   if(strtotime($value) > strtotime(date("Ymd") )){
     return 'Por favor escolha uma data no passado.';
   }
   elseif (strtotime($value) > strtotime('20180222' ) || strtotime($value) < strtotime('20080101' )){
 
-    return 'Somente são permitidas obras construídas nos últimos 10 anos';
+    return 'Você selecionou uma data no calendário? Somente são permitidas obras construídas nos últimos 10 anos';
   }
   return $valid;
 
