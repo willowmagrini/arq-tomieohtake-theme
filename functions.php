@@ -260,7 +260,7 @@ $premios_metabox->set_fields(
             'description' => ''
         ),
         array(
-            'id'          => 'desc_mencao_honrosa 2',
+            'id'          => 'desc_mencao_honrosa_2',
             'label'       => 'Descrição da Menção Honrosa 2',
             'type'        => 'editor',
             'description' => ''
