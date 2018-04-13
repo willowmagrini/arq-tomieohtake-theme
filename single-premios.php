@@ -19,8 +19,8 @@ get_header(); ?>
 				<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
 					<img src="<?php echo $img[0];?>"/>
 				<?php endif;?>
-			<br />
 			</div>
+			<br />
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'template-parts/content', 'single' ); ?>
@@ -109,7 +109,7 @@ get_header(); ?>
 		<hr />
 		<h2 class="fullheader-title">MEMBROS DO JÚRI</h2>
 			<div class="container">
-				<p class="lead position"><?php the_field('juri'); ?></p>
+				<div><?php the_field('juri'); ?></div>
 			</div>
 		<?php endif; ?>
 		<?php if ( $premiacoes = get_field('premiacoes') ): ?>
