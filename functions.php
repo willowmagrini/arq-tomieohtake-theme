@@ -177,8 +177,20 @@ $premios_metabox->set_fields(
     array(
         array(
             'id'          => 'premiado_1',
-            'label'       => 'Premiado 1º Lugar',
+            'label'       => 'Imagem 1º Lugar',
             'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'nome_premiado_1',
+            'label'       => 'Nome do Projeto 1º Lugar',
+            'type'        => 'text',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'desc_premiado_1',
+            'label'       => 'Descrição da equipe 1º Lugar',
+            'type'        => 'editor',
             'description' => ''
         ),
         array(
@@ -188,15 +200,51 @@ $premios_metabox->set_fields(
             'description' => ''
         ),
         array(
+            'id'          => 'nome_premiado_2',
+            'label'       => 'Nome do Projeto 2º Lugar',
+            'type'        => 'text',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'desc_premiado_2',
+            'label'       => 'Descrição da equipe 2º Lugar',
+            'type'        => 'editor',
+            'description' => ''
+        ),
+        array(
             'id'          => 'premiado_3',
             'label'       => 'Premiado 3º Lugar',
             'type'        => 'image',
             'description' => ''
         ),
         array(
+            'id'          => 'nome_premiado_3',
+            'label'       => 'Nome do Projeto 3º Lugar',
+            'type'        => 'text',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'desc_premiado_3',
+            'label'       => 'Descrição da equipe 3º Lugar',
+            'type'        => 'editor',
+            'description' => ''
+        ),
+        array(
             'id'          => 'mencao_honrosa',
             'label'       => 'Menção Honrosa',
             'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'nome_mencao_honrosa',
+            'label'       => 'Nome da Menção Honrosa',
+            'type'        => 'text',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'desc_mencao_honrosa',
+            'label'       => 'Descrição da Menção Honrosa',
+            'type'        => 'editor',
             'description' => ''
         ),
         array(
