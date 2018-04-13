@@ -26,13 +26,42 @@ get_header(); ?>
 
 				<?php endwhile; // End of the loop. ?>
 
-				<div class="container">
-				<h2 class="fullheader-title">PREMIADOS</h2>
+
+<div class="container">
+                <div class="section-content">
+            <div class="row">
+                            <div class="feature-item col-lg-4 col-sm-6">
+                    <div class="feature-media">
 			<?php $premiado_1 = get_field('premiado_1'); ?>
-			<?php // $premiado_1 = wp_get_attachment_image_src( $premiado_1 ); ?>
-				<img src="<?php echo $premiado_1; ?>" alt="<?php the_title(); ?>" class="img">
-				</div>
-				<hr />
+			<?php $img_premiado_1 = wp_get_attachment_image( $premiado_1, 'large'); ?>
+				<img alt="<?php the_title(); ?>" class="img" src="<?php echo $img_premiado_1; ?>
+                    </div>
+                    <h3>1º Lugar</h3>
+                </div>
+                    <div class="feature-item col-lg-4 col-sm-6">
+                    <div class="feature-media">
+			<?php $premiado_2 = get_field('premiado_2'); ?>
+			<?php $img_premiado_2 = wp_get_attachment_image( $premiado_2, 'large'); ?>
+				<img alt="<?php the_title(); ?>" class="img" src="<?php echo $img_premiado_2; ?>
+                    </div>
+                    <h3>2º Lugar</h3>
+                </div>
+                    <div class="feature-item col-lg-4 col-sm-6">
+                    <div class="feature-media">
+			<?php $premiado_3 = get_field('premiado_3'); ?>
+			<?php $img_premiado_3 = wp_get_attachment_image( $premiado_3, 'large'); ?>
+				<img alt="<?php the_title(); ?>" class="img" src="<?php echo $img_premiado_3; ?>
+                    </div>
+                    <h3>3º Lugar </h3>
+                </div>
+                    </div>
+        </div>
+    </div>
+
+
+			<?php // if ( $selecionados = get_field('selecionados') ): ?>
+
+
 
 
 			<?php if ( $selecionados = get_field('selecionados') ): ?>
@@ -52,7 +81,7 @@ get_header(); ?>
 			<?php if ( $premiacoes = get_field('premiacoes') ): ?>
 				<div class="container">
 					<h2 class="fullheader-title">PREMIAÇÕES</h2>
-					<p class="lead position"><?php the_field('premiacoes'); ?></p>
+					<div><?php the_field('premiacoes'); ?></div>
 				</div>
 			<?php endif; ?>
 				</main><!-- #main -->
