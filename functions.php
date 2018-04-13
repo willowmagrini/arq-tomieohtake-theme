@@ -141,6 +141,85 @@ function post_type_premios() {
 add_action( 'init', 'post_type_premios', 1 );
 
 
+// Adicionando Campos ao CPT
+
+if (!function_exists('get_field')) {
+  function get_field($field) {
+    global $post;
+    return get_post_meta($post->ID, $field, true);
+  }
+} 
+if (!function_exists('the_field')) {
+  function the_field($field) {
+    global $post;
+    echo get_field($field);
+  }
+}
+function premios_query( $query ) {
+    if ( is_post_type_archive('premios') ) {
+        $query->set( 'orderby', 'asc' );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'premios_query' ); 
+
+// Adicionando classes dos campos
+
+require get_template_directory() . '/inc/class-metabox.php';
+$premios_metabox = new Odin_Metabox(
+    'premios_metabox', // Slug/ID do Metabox (obrigatório)
+    'Artistas, Jurí e Prêmios', // Nome do Metabox  (obrigatório)
+    'premios', // Slug do Post Type, sendo possível enviar apenas um valor ou um array com vários (opcional)
+    'normal', // Contexto (opções: normal, advanced, ou side) (opcional)
+    'high' // Prioridade (opções: high, core, default ou low) (opcional)
+);
+$premios_metabox->set_fields(
+    array(
+        array(
+            'id'          => 'premiado_1',
+            'label'       => 'Premiado 1º Lugar',
+            'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'premiado_2',
+            'label'       => 'Premiado 2º Lugar',
+            'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'premiado_3',
+            'label'       => 'Premiado 3º Lugar',
+            'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'mencao_honrosa',
+            'label'       => 'Menção Honrosa',
+            'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'selecionados',
+            'label'       => 'Selecionados / Finalistas',
+            'type'        => 'editor',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'juri',
+            'label'       => 'Júri',
+            'type'        => 'editor',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'premiacoes',
+            'label'       => 'Premiações',
+            'type'        => 'textarea',
+            'description' => ''
+        ),
+    )
+);
+
 //plugin inscricoes
 require get_stylesheet_directory() . '/inc/custom-post.php';
 require get_stylesheet_directory() . '/inc/ajax_functions.php';

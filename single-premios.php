@@ -6,41 +6,58 @@
  *
  * @package coletivo
  */
-
 get_header(); ?>
 
 	<div id="content" class="site-content">
-		<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full', true )):?>
-		<div class="page-fullheader">
-			<img src="<?php echo $img[0];?>"/>
-		</div>
-		<?php endif;?>
 		<div id="content-inside" class="container no-sidebar">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
-
 			<div class="container">
 				<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
-				<div class="nav-links">
-					<div class="col-sm-6">
-					<div class="nav-previous"><?php previous_post_link( '%link', __( '<i class="fa fa-caret-left" aria-hidden="true"></i> Previous', 'coletivo' ) ); ?></div>
-					</div>
-					<div class="col-sm-6">
-					<div class="nav-next"><?php next_post_link( '%link', __( 'Next <i class="fa fa-caret-right" aria-hidden="true"></i>', 'coletivo' ) ); ?></div>
-					</div>
-				</div>
 			</div>
-
+			<div class="container">
+				<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
+					<img src="<?php echo $img[0];?>"/>
+				<?php endif;?>
+			</div>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'template-parts/content', 'single' ); ?>
 
 				<?php endwhile; // End of the loop. ?>
 
+				<div class="container">
+				<h2 class="fullheader-title">PREMIADOS</h2>
+			<?php $premiado_1 = get_field('premiado_1'); ?>
+			<?php // $premiado_1 = wp_get_attachment_image_src( $premiado_1 ); ?>
+				<img src="<?php echo $premiado_1; ?>" alt="<?php the_title(); ?>" class="img">
+				</div>
+				<hr />
+
+
+			<?php if ( $selecionados = get_field('selecionados') ): ?>
+				<div class="container">
+					<h2 class="fullheader-title">FINALISTAS</h2>
+					<p class="lead position"><?php the_field('selecionados'); ?></p>
+				</div>
+				<hr />
+			<?php endif; ?>
+			<?php if ( $juri = get_field('juri') ): ?>
+				<div class="container">
+					<h2 class="fullheader-title">MEMBROS DO JÚRI</h2>
+					<p class="lead position"><?php the_field('juri'); ?></p>
+				</div>
+				<hr />
+			<?php endif; ?>
+			<?php if ( $premiacoes = get_field('premiacoes') ): ?>
+				<div class="container">
+					<h2 class="fullheader-title">PREMIAÇÕES</h2>
+					<p class="lead position"><?php the_field('premiacoes'); ?></p>
+				</div>
+			<?php endif; ?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
 
 		</div><!--#content-inside -->
 	</div><!-- #content -->
-
 <?php get_footer(); ?>

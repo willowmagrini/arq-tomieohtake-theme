@@ -112,6 +112,22 @@ hr {
     border-top: 1px solid #eee;
 }
 
+.single-premios h2.fullheader-title {
+    font-size: 30px;
+    letter-spacing: 0px;
+    font-weight: 300;
+    text-transform: none;
+    text-align: left;
+    padding-left: 0%;
+    padding-top: 20px;
+}
+
+.single-premios .content-area {
+    padding: 0 6%;
+    border-top: 1px solid #eee;
+}
+
+
 .footer-logos {
     background-color: #FFF;
 }
@@ -275,7 +291,6 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     font-family: "Open Sans Condensed", sans-serif;
     margin-bottom: 0;
     font-size: 1.2em;
-}
 }
 
 @media screen and (max-width: 545px) {
