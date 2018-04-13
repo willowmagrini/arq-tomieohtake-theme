@@ -247,6 +247,24 @@ $premios_metabox->set_fields(
             'type'        => 'editor',
             'description' => ''
         ),
+                array(
+            'id'          => 'mencao_honrosa_2',
+            'label'       => 'Menção Honrosa 2',
+            'type'        => 'image',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'nome_mencao_honrosa_2',
+            'label'       => 'Nome da Menção Honrosa 2',
+            'type'        => 'text',
+            'description' => ''
+        ),
+        array(
+            'id'          => 'desc_mencao_honrosa 2',
+            'label'       => 'Descrição da Menção Honrosa 2',
+            'type'        => 'editor',
+            'description' => ''
+        ),
         array(
             'id'          => 'selecionados',
             'label'       => 'Selecionados / Finalistas',
