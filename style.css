@@ -343,3 +343,7 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
     padding: 20px;
     background-color:#f8f9f9;
 }
+
+.jp-carousel-commentlink , #jp-carousel-comment-form, .jp-carousel-comment-form-field , .jp-carousel-comments, .jp-carousel-comments-loading {
+     display: none !important;
+}

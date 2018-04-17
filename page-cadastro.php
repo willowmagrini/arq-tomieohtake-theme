@@ -57,9 +57,9 @@ get_header('inscricao'); ?>
           <?php
 							$args=array(
 		  					'post_id'		=> $post_id,
-		            'field_groups' => array('group_5a79ea073c751'),
+		            		'field_groups' => array('group_5a79ea073c751'),
 		  					'submit_value'		=> $submit,
-								'updated_message' => $updated,
+							'updated_message' => $updated,
 	  					);
 						acf_form($args); ?>
 

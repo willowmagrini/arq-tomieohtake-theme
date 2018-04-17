@@ -267,8 +267,8 @@ $premios_metabox->set_fields(
         ),
         array(
             'id'          => 'selecionados',
-            'label'       => 'Selecionados / Finalistas',
-            'type'        => 'editor',
+            'label'       => 'Selecionados',
+            'type'        => 'image_plupload',
             'description' => ''
         ),
         array(
@@ -290,3 +290,9 @@ $premios_metabox->set_fields(
 require get_stylesheet_directory() . '/inc/custom-post.php';
 require get_stylesheet_directory() . '/inc/ajax_functions.php';
 require get_stylesheet_directory() . '/inc/funcoes.php';
+
+//custom content width for gallerys
+function jeherve_custom_tiled_gallery_width() {
+    return '900';
+}
+add_filter( 'tiled_gallery_content_width', 'jeherve_custom_tiled_gallery_width' );

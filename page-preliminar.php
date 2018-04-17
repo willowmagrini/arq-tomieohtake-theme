@@ -32,28 +32,21 @@ get_header('inscricao'); ?>
 							<p><?php echo get_the_content(); ?></p>
 								<a class="login_button show_login_link btn-lg btn btn-theme-primary" id="show_login" href="">Entrar</a>
 						<?php endwhile; // End of the loop. ?>
-
 					</div>
 					<div class="col-md-6" id="cadastro-preliminar">
 					<h2 class="fullheader-title">Não possui? Cadastre-se!</h2>
 						<?php
 								$args=array(
 									'post_id'		=> 'new_user',
-									// 'field_groups' => array(61),
 									'fields' => array('field_5a79e3968abac','field_5a79e721d5c28','field_5a79e72cd5c29'),
 									'html_after_fields'	=> '<input type="text" id="honeypot" name="honeypot" autocomplete="off">',
 									'updated_message' => __("", 'acf'),
-
-
 									'submit_value'		=> 'Próximo passo'
 								);
 							acf_form($args);
 
 							?>
 					</div>
-
-
-
 				</main><!-- #main -->
 			</div><!-- #primary -->
 		</div><!--#content-inside -->
