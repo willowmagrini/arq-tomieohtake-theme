@@ -22,7 +22,7 @@ if ( ! function_exists( 'coletivo_footer_site_info' ) ) {
 
         <?php printf(esc_html__('%2$s %1$s', 'coletivo'), esc_attr(date('Y')), esc_attr(get_bloginfo())); ?>
         <span class="sep"> &ndash; </span>
-        <?php printf(esc_html__('Desenvolvido pela %1$s com %2$s', 'coletivo'), '<a class="logo-brasa" href="' . esc_url('http://brasa.art.br', 'coletivo') . '">Brasa</a>', '<a class="logo-wp" href="' . esc_url('https://br.wordpress.org', 'coletivo') . '"><i class="fa fa-wordpress" aria-hidden="true"></i></a>'); ?>
+        <?php printf(esc_html__('Desenvolvido pela %1$s com %2$s', 'coletivo'), '<a class="logo-brasa" href="' . esc_url('https://brasa.art.br', 'coletivo') . '">Brasa</a>', '<a class="logo-wp" href="' . esc_url('https://br.wordpress.org', 'coletivo') . '"><i class="fa fa-wordpress" aria-hidden="true"></i></a>'); ?>
         <?php
     }
 }
@@ -97,6 +97,8 @@ if ( ! function_exists( 'coletivo_site_header' ) ) {
     }
 }
 add_action( 'coletivo_site_header', 'coletivo_site_header' );
+
+add_image_size( 'tomie-square', 500, 500, true );
 
 // Register Custom Post Type
 function post_type_premios() {
