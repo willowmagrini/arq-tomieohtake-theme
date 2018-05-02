@@ -57,8 +57,7 @@ get_header('inscricao'); ?>
 
 					acf_form(array(
   					'post_id'		=> 'new_post_'.$user_id,
-            'field_groups' => array('group_5a79ea08c499c'),
-
+           			'field_groups' => array('group_5a79ea08c499c'),
   					'new_post'		=> array(
   						'post_type'		=> 'bza_inscricoes',
   						'post_status'		=> 'publish'

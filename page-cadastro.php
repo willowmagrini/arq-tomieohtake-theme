@@ -10,7 +10,7 @@ get_header('inscricao'); ?>
 
 	<div id="content" class="site-content">
 		<div class="page-header">
-      <div class="container">
+      <div class="container container-form no-sidebar">
         <h1 class="page-title">Dados do arquiteto</h1>
       </div><!-- container -->
     </div><!-- page-header -->
@@ -57,9 +57,9 @@ get_header('inscricao'); ?>
           <?php
 							$args=array(
 		  					'post_id'		=> $post_id,
-		            'field_groups' => array('group_5a79ea073c751'),
+		            		'field_groups' => array('group_5a79ea073c751'),
 		  					'submit_value'		=> $submit,
-								'updated_message' => $updated,
+							'updated_message' => $updated,
 	  					);
 						acf_form($args); ?>
 

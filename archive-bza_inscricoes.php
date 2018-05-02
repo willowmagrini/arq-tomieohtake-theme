@@ -40,7 +40,7 @@ get_header(); ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class( array('list-article', 'clearfix') ); ?>>
+						<article id="post-<?php the_ID(); ?>" <?php post_class( array('list-projects', 'clearfix') ); ?>>
 
 							<div class="list-article-thumb">
 								<a href="<?php echo esc_url( get_permalink() ); ?>">
@@ -56,7 +56,7 @@ get_header(); ?>
 								// print_r($post_meta['nome_do_projeto'][0]);
 							?>
 
-							<div class="list-article-content">
+							<div class="list-projects-content">
 								<div class="list-article-meta">
 									<?php
 										$categorias=get_the_category();
@@ -64,9 +64,11 @@ get_header(); ?>
 									 ?>
 								</div>
 								<header class="entry-header">
-									<p>E-mail: <?php echo $email;?></p>
+									<p>Nome do projeto: <a href="<?php echo get_post_permalink( get_the_id() );?>"> <?php  echo $post_meta['nome_do_projeto'][0] ?></a></p>
 									<p>Nome do Candidatos: <?php echo $user_meta['nome'][0];?></p>
-									<p>Nome do projeto: <a href="<?php echo get_post_permalink( get_the_id() );?>"> <?php  echo $post_meta['nome_do_projeto'][0] ?></a>	</p>
+									<p>E-mail: <?php echo $email;?></p>
+									
+									
 								</header><!-- .entry-header -->
 								<div class="entry-excerpt">
 									<?php
