@@ -36,17 +36,26 @@ get_header('inscricao'); ?>
               // add_user_meta( 218, 'perfil_completo', 1, true );
               // add_post_meta( 356, 'inscricao_completa', 1, true );
 
-                $args = array(
-  	                'post_type'         => 'bza_inscricoes',
-                );
-                  $args['meta_query']= array(
-                      array(
-                          'key' => 'finalista',
-                          'value' =>  1,
+			  $args = array(
+				  'post_type'         => 'bza_inscricoes',
+				  'posts_per_page'   => -1,
+				  'tax_query' => array(
+					  array(
+						  'taxonomy' => 'category',
+						  'field'    => 'name',
+						  'terms'    => '2018',
+					  ),
+				  ),
 
-                      )
-                  );
-                $posts = get_posts($args);
+			  );
+				$args['meta_query']= array(
+					array(
+						'key' => 'finalista',
+						'value' =>  true,
+
+					)
+				);
+			  $posts = get_posts($args);
 								// print_r($posts);
 								if (!$posts) {
 									echo "<h3>Nenhum projeto finalista</h3>";
