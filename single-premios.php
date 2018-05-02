@@ -31,7 +31,7 @@ get_header(); ?>
                 <div class="feature-item col-lg-4 col-sm-6">
                     <div class="feature-media">
 			<?php $premiado_1 = get_field('premiado_1'); ?>
-			<?php $img_premiado_1 = wp_get_attachment_link( $premiado_1, 'coletivo-square', true); ?>
+			<?php $img_premiado_1 = wp_get_attachment_link( $premiado_1, 'tomie-square', true); ?>
 				<?php echo $img_premiado_1; ?></a>
                     </div>
                     <h3>1º Lugar - <?php the_field('nome_premiado_1'); ?></h3>
@@ -42,7 +42,7 @@ get_header(); ?>
                 <div class="feature-item col-lg-4 col-sm-6">
                     <div class="feature-media">
 			<?php $premiado_2 = get_field('premiado_2'); ?>
-			<?php $img_premiado_2 = wp_get_attachment_link( $premiado_2, 'coletivo-square', true); ?>
+			<?php $img_premiado_2 = wp_get_attachment_link( $premiado_2, 'tomie-square', true); ?>
 				<?php echo $img_premiado_2; ?>
                     </div>
                     <h3>2º Lugar - <?php the_field('nome_premiado_2'); ?></h3>
@@ -53,7 +53,7 @@ get_header(); ?>
                 <div class="feature-item col-lg-4 col-sm-6">
                     <div class="feature-media">
 			<?php $premiado_3 = get_field('premiado_3'); ?>
-			<?php $img_premiado_3 = wp_get_attachment_link( $premiado_3, 'coletivo-square', true); ?>
+			<?php $img_premiado_3 = wp_get_attachment_link( $premiado_3, 'tomie-square', true); ?>
 				<?php echo $img_premiado_3; ?>
                     </div>
                     <h3>3º Lugar - <?php the_field('nome_premiado_3'); ?></h3>
@@ -71,7 +71,7 @@ get_header(); ?>
 					<div class="feature-item col-lg-4 col-sm-6">
 						<div class="feature-media">
 					<?php $mencao_honrosa = get_field('mencao_honrosa'); ?>
-					<?php $img_mencao_honrosa = wp_get_attachment_link( $mencao_honrosa, 'coletivo-square', true); ?>
+					<?php $img_mencao_honrosa = wp_get_attachment_link( $mencao_honrosa, 'tomie-square', true); ?>
 					<?php echo $img_mencao_honrosa;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa'); ?></h3>
@@ -81,7 +81,7 @@ get_header(); ?>
 					<?php if ( $mencao_honrosa_2 = get_field('mencao_honrosa_2') ): ?>
 						<div class="feature-media">
 					<?php $mencao_honrosa_2 = get_field('mencao_honrosa_2'); ?>
-					<?php $img_mencao_honrosa_2 = wp_get_attachment_link( $mencao_honrosa_2, 'coletivo-square', true); ?>
+					<?php $img_mencao_honrosa_2 = wp_get_attachment_link( $mencao_honrosa_2, 'tomie-square', true); ?>
 					<?php echo $img_mencao_honrosa_2;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa_2'); ?></h3>
