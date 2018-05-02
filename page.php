@@ -25,7 +25,7 @@ get_header('inscricao'); ?>
 			<div class="homeprov-logo">
  				<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/ito_index_logo.jpg">
  			</div>
- 				<h1 style="text-align: center;" class="btn-theme-primary">Inscrições prorrogadas! Até 27 de abril!</h1>
+ 				<h1 style="text-align: center;" class="btn-theme-primary">Inscrições encerradas!</h1>
 				<hr />
         </div>
 		<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
