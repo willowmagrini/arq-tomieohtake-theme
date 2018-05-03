@@ -23,11 +23,11 @@ get_header('inscricao'); ?>
 		</div>
 		<?php endif;?>
 		<div id="content-inside" class="container no-sidebar">
-		<br />
-		<h1 class="fullheader-title">
-			Selecionados
-		</h1>
 			<div id="primary" class="content-area">
+        <br />
+        <h1 class="fullheader-title">
+          Selecionados
+        </h1>
 				<main id="main" class="site-main" role="main">
 					<div class="col-md-12" id="login-preliminar">
             <div class="candidatos">

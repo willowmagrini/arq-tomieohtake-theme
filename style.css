@@ -109,14 +109,23 @@ hr {
 
 .no-sidebar .content-area {
     padding: 0 6%;
-    border-top: 1px solid #eee;
 }
 
 .single-premios h2.fullheader-title, .post-type-archive-premios h2.fullheader-title {
     font-size: 30px;
     letter-spacing: 0px;
     font-weight: 300;
-    text-transform: none;
+    text-transform: uppercase;
+    text-align: left;
+    padding-left: .9375rem;
+    padding-top: 20px;
+}
+
+.single-premios h3.header-title {
+    font-size: 26px;
+    letter-spacing: 0px;
+    font-weight: 300;
+    text-transform: uppercase;
     text-align: left;
     padding-left: .9375rem;
     padding-top: 20px;
@@ -193,12 +202,15 @@ hr {
 	border-top: none;
 }
 
-.page-template-page-preliminar h1.fullheader-title, .page-template-page-cadastrados h1.fullheader-title, .page-template-page-inscritos h1.fullheader-title, .page-template-page-finalistas h1.fullheader-title {
+.page-template-page-preliminar h1.fullheader-title {
     text-align: center;
 }
 
-.page-template-page-preliminar h2.fullheader-title, .page-template-page-cadastrados h2.fullheader-title, .page-template-page-inscritos h2.fullheader-title, .page-template-page-finalistas h2.fullheader-title {
+.page-template-page-preliminar h2.fullheader-title, .page-template-page-cadastrados h2.fullheader-title, .page-template-page-inscritos h2.fullheader-title, .page-template-page-finalistas h2.fullheader-title,  .page-template-page-proj-finalistas h2.fullheader-title {
     padding-left: 0;
+}
+.page-template-page-preliminar h1.fullheader-title, .page-template-page-cadastrados h1.fullheader-title, .page-template-page-inscritos h1.fullheader-title, .page-template-page-finalistas h1.fullheader-title,  .page-template-page-proj-finalistas h1.fullheader-title {
+    border-bottom: 1px solid #eee;
 }
 
 input[type="reset"], input[type="submit"], input[type="submit"] {

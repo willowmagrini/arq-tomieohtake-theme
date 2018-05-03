@@ -30,7 +30,7 @@ get_header(); ?>
 							?>		
 							<div class="feature-item col-lg-4 col-sm-6">
 								<div class="feature-media">
-										<a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_post_thumbnail('coletivo-blog-small'); ?>
+										<a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_post_thumbnail('medium'); ?>
 										</a>
 								</div><!-- .feature-media -->
 									<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>	

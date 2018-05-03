@@ -12,19 +12,24 @@ get_header(); ?>
 	<div id="content-inside" class="container no-sidebar">
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+			<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'coletivo-medium', true )):?>
+					<img src="<?php echo $img[0];?>"/>
+			<?php endif;?>
+				</div>
+			</div>
+		</div>
 				<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
 			<div class="container">
-				<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
-					<img src="<?php echo $img[0];?>"/>
-				<?php endif;?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					<br /><br />
 					<?php get_template_part( 'template-parts/content', 'single' ); ?>
 
 				<?php endwhile; // End of the loop. ?>
 			</div>
 		<hr />
-	    <h2 class="fullheader-title">PREMIADOS</h2>
+	    <h3 class="header-title">Premiados</h3>
 	<div class="container">
         <div class="row">
         	<?php if ( $premiado_1 = get_field('premiado_1') ): ?>
@@ -65,7 +70,7 @@ get_header(); ?>
 		<br />
 			<?php if ( $mencao_honrosa = get_field('mencao_honrosa') ): ?>
 			<hr />
-			<h2 class="fullheader-title">MENÇÃO HONROSA</h2>
+			<h3 class="header-title">Menção Honrosa</h3>
 		<div class="container">
 	        <div class="row">
 					<div class="feature-item col-lg-4 col-sm-6">
@@ -95,7 +100,7 @@ get_header(); ?>
 			<?php endif; ?>
 				<?php if ( $selecionados = get_field('selecionados') ): ?>
 				<hr />
-				<h2 class="fullheader-title">SELECIONADOS</h2>
+				<h3 class="header-title">Selecionados</h3>
 					<div class="container">
 						<?php $selecionados = get_post_meta( get_the_ID(), 'selecionados', true );?>
 						<?php if ( $selecionados && ! empty( explode( ',', $selecionados ) ) ) :?>
@@ -107,14 +112,14 @@ get_header(); ?>
 				<?php endif; ?>
 				<?php if ( $juri = get_field('juri') ): ?>
 				<hr />
-				<h2 class="fullheader-title">MEMBROS DO JÚRI</h2>
+				<h3 class="header-title">Membros do Júri</h3>
 					<div class="container">
 						<div><?php the_field('juri'); ?></div>
 					</div>
 				<?php endif; ?>
 				<?php if ( $premiacoes = get_field('premiacoes') ): ?>
 				<hr />
-				<h2 class="fullheader-title">PREMIAÇÕES</h2>
+				<h3 class="header-title">Premiações</h3>
 					<div class="container">
 						<div><?php the_field('premiacoes'); ?></div>
 					</div>

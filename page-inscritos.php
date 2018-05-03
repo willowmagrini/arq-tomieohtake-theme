@@ -24,11 +24,11 @@ get_header('inscricao'); ?>
 		</div>
 		<?php endif;?>
 		<div id="content-inside" class="container no-sidebar">
-		<br />
-		<h1 class="fullheader-title">
-			Inscritos
-		</h1>
 			<div id="primary" class="content-area">
+        <br />
+        <h1 class="fullheader-title">
+          Inscritos
+        </h1>
 				<main id="main" class="site-main" role="main">
             <div class="candidatos-lista col-md-6">
             <h2 class="fullheader-title">Lista <a class="btn btn-theme-primary" href="<?php echo get_permalink(); ?>">Ver todos</a></h2>
