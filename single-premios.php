@@ -28,11 +28,11 @@ get_header(); ?>
 
 				<?php endwhile; // End of the loop. ?>
 			</div>
+		<?php if ( $premiado_1 = get_field('premiado_1') ): ?>
 		<hr />
 	    <h3 class="header-title">Premiados</h3>
 	<div class="container">
         <div class="row">
-        	<?php if ( $premiado_1 = get_field('premiado_1') ): ?>
                 <div class="feature-item col-lg-4 col-sm-6">
                     <div class="feature-media">
 			<?php $premiado_1 = get_field('premiado_1'); ?>
@@ -102,11 +102,15 @@ get_header(); ?>
 				<hr />
 				<h3 class="header-title">Selecionados</h3>
 					<div class="container">
-						<?php $selecionados = get_post_meta( get_the_ID(), 'selecionados', true );?>
-						<?php if ( $selecionados && ! empty( explode( ',', $selecionados ) ) ) :?>
-							<?php $value = '<div id="gallery">[gallery ids="%s" type="square"]</div>';?>
-							<?php $value = sprintf( $value, $selecionados );?>
-							<?php echo apply_filters( 'the_content', $value );?>
+						<?php $selecionados = get_post_meta( get_the_ID(), 'selecionados', true );
+						?>
+						<?php if ( isset($selecionados)) :
+							$selecionados_array =  explode( ',', $selecionados) ;
+							if (!empty($selecionados_array) )  {
+	 							$valor = '<div id="gallery">[gallery ids="'.$selecionados.'" type="square"]</div>';?>
+								<?php echo apply_filters( 'the_content', $valor );
+							}
+						?>
 						<?php endif;?>
 					</div>
 				<?php endif; ?>
