@@ -15,7 +15,7 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
-			<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'coletivo-medium', true )):?>
+			<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
 					<img src="<?php echo $img[0];?>"/>
 			<?php endif;?>
 				</div>

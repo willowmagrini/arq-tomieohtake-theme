@@ -282,7 +282,7 @@ $premios_metabox->set_fields(
         array(
             'id'          => 'premiacoes',
             'label'       => 'Premiações',
-            'type'        => 'textarea',
+            'type'        => 'editor',
             'description' => ''
         ),
     )
