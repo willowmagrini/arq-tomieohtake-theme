@@ -12,15 +12,6 @@ get_header(); ?>
 	<div id="content-inside" class="container no-sidebar">
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-sm-4">
-			<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
-					<img src="<?php echo $img[0];?>"/>
-			<?php endif;?>
-				</div>
-			</div>
-		</div>
 				<?php the_title( '<h2 class="fullheader-title">', '</h2>' ); ?>
 			<div class="container">
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -40,7 +31,8 @@ get_header(); ?>
 				<?php echo $img_premiado_1; ?></a>
                     </div>
                     <h3>1º Lugar - <?php the_field('nome_premiado_1'); ?></h3>
-                    <p class="premios_desc"><?php the_field('desc_premiado_1'); ?></p>
+                    <?php $content_premiado_1 = get_post_meta( get_the_ID(), 'desc_premiado_1', true ); ?>
+                    	<p><?php echo apply_filters( 'the_content', $content_premiado_1 );?></p>
                 </div>
             <?php endif; ?>
             <?php if ( $premiado_2 = get_field('premiado_2') ): ?>
@@ -51,7 +43,8 @@ get_header(); ?>
 				<?php echo $img_premiado_2; ?>
                     </div>
                     <h3>2º Lugar - <?php the_field('nome_premiado_2'); ?></h3>
-                    <p class="premios_desc"><?php the_field('desc_premiado_2'); ?></p>
+                    <?php $content_premiado_2 = get_post_meta( get_the_ID(), 'desc_premiado_2', true ); ?>
+                    	<p><?php echo apply_filters( 'the_content', $content_premiado_2 );?></p>
                 </div>
                 <?php endif; ?>
                 <?php if ( $premiado_3 = get_field('premiado_3') ): ?>
@@ -62,7 +55,8 @@ get_header(); ?>
 				<?php echo $img_premiado_3; ?>
                     </div>
                     <h3>3º Lugar - <?php the_field('nome_premiado_3'); ?></h3>
-                    <p class="premios_desc"><?php the_field('desc_premiado_3'); ?></p>
+                    <?php $content_premiado_3 = get_post_meta( get_the_ID(), 'desc_premiado_3', true ); ?>
+                    <p><?php echo apply_filters( 'the_content', $content_premiado_3 );?></p>
             	</div>
             	<?php endif; ?>
         </div>
@@ -80,7 +74,8 @@ get_header(); ?>
 					<?php echo $img_mencao_honrosa;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa'); ?></h3>
-		                    <p class="premios_desc"><?php the_field('desc_mencao_honrosa'); ?></p>
+		                    <?php $content_mencao_honrosa = get_post_meta( get_the_ID(), 'desc_mencao_honrosa', true ); ?>
+		                    	<p><?php echo apply_filters( 'the_content', $content_mencao_honrosa );?></p>
 		            </div>
 					<div class="feature-item col-lg-4 col-sm-6">
 					<?php if ( $mencao_honrosa_2 = get_field('mencao_honrosa_2') ): ?>
@@ -90,7 +85,8 @@ get_header(); ?>
 					<?php echo $img_mencao_honrosa_2;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa_2'); ?></h3>
-		                    <p class="premios_desc"><?php the_field('desc_mencao_honrosa_2'); ?></p>
+		                    <?php $content_mencao_honrosa_2 = get_post_meta( get_the_ID(), 'desc_mencao_honrosa_2', true ); ?>
+		                    	<p><?php echo apply_filters( 'the_content', $content_mencao_honrosa_2 );?></p>
 		            <?php endif; ?>
 		            </div>
 		            <div class="feature-item col-lg-4 col-sm-6"></div>

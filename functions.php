@@ -295,6 +295,6 @@ require get_stylesheet_directory() . '/inc/funcoes.php';
 
 //custom content width for gallerys
 function jeherve_custom_tiled_gallery_width() {
-    return '900';
+    return '940';
 }
 add_filter( 'tiled_gallery_content_width', 'jeherve_custom_tiled_gallery_width' );
