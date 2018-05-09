@@ -14,7 +14,7 @@ get_header(); ?>
 			<main id="main" class="site-main" role="main">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-lg-4 col-sm-4">
 			<?php if(has_post_thumbnail() && $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true )):?>
 					<img src="<?php echo $img[0];?>"/>
 			<?php endif;?>
@@ -40,7 +40,7 @@ get_header(); ?>
 				<?php echo $img_premiado_1; ?></a>
                     </div>
                     <h3>1º Lugar - <?php the_field('nome_premiado_1'); ?></h3>
-                    <div><?php the_field('desc_premiado_1'); ?></div>
+                    <p class="premios_desc"><?php the_field('desc_premiado_1'); ?></p>
                 </div>
             <?php endif; ?>
             <?php if ( $premiado_2 = get_field('premiado_2') ): ?>
@@ -51,7 +51,7 @@ get_header(); ?>
 				<?php echo $img_premiado_2; ?>
                     </div>
                     <h3>2º Lugar - <?php the_field('nome_premiado_2'); ?></h3>
-                    <div><?php the_field('desc_premiado_2'); ?></div>
+                    <p class="premios_desc"><?php the_field('desc_premiado_2'); ?></p>
                 </div>
                 <?php endif; ?>
                 <?php if ( $premiado_3 = get_field('premiado_3') ): ?>
@@ -62,7 +62,7 @@ get_header(); ?>
 				<?php echo $img_premiado_3; ?>
                     </div>
                     <h3>3º Lugar - <?php the_field('nome_premiado_3'); ?></h3>
-                    <div><?php the_field('desc_premiado_3'); ?></div>
+                    <p class="premios_desc"><?php the_field('desc_premiado_3'); ?></p>
             	</div>
             	<?php endif; ?>
         </div>
@@ -80,7 +80,7 @@ get_header(); ?>
 					<?php echo $img_mencao_honrosa;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa'); ?></h3>
-		                    <div><?php the_field('desc_mencao_honrosa'); ?></div>
+		                    <p class="premios_desc"><?php the_field('desc_mencao_honrosa'); ?></p>
 		            </div>
 					<div class="feature-item col-lg-4 col-sm-6">
 					<?php if ( $mencao_honrosa_2 = get_field('mencao_honrosa_2') ): ?>
@@ -90,7 +90,7 @@ get_header(); ?>
 					<?php echo $img_mencao_honrosa_2;?>
 		                </div>
 		                    <h3 style="text-align: center;"><?php the_field('nome_mencao_honrosa_2'); ?></h3>
-		                    <div><?php the_field('desc_mencao_honrosa_2'); ?></div>
+		                    <p class="premios_desc"><?php the_field('desc_mencao_honrosa_2'); ?></p>
 		            <?php endif; ?>
 		            </div>
 		            <div class="feature-item col-lg-4 col-sm-6"></div>
@@ -116,16 +116,20 @@ get_header(); ?>
 				<?php endif; ?>
 				<?php if ( $juri = get_field('juri') ): ?>
 				<hr />
+				<?php $content_juri = get_post_meta( get_the_ID(), 'juri', true ); ?>
 				<h3 class="header-title">Membros do Júri</h3>
 					<div class="container">
-						<div><?php the_field('juri'); ?></div>
+						<p">
+							<?php echo apply_filters( 'the_content', $content_juri );?>
+						</p>
 					</div>
 				<?php endif; ?>
 				<?php if ( $premiacoes = get_field('premiacoes') ): ?>
 				<hr />
+				<?php $content_premiacoes = get_post_meta( get_the_ID(), 'premiacoes', true ); ?>
 				<h3 class="header-title">Premiações</h3>
 					<div class="container">
-						<div><?php the_field('premiacoes'); ?></div>
+						<p><?php echo apply_filters( 'the_content', $content_premiacoes );?></p>
 					</div>
 				<?php endif; ?>
 			</main><!-- #main -->

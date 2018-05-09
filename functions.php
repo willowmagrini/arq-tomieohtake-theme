@@ -170,7 +170,7 @@ add_action( 'pre_get_posts', 'premios_query' );
 require get_template_directory() . '/inc/class-metabox.php';
 $premios_metabox = new Odin_Metabox(
     'premios_metabox', // Slug/ID do Metabox (obrigatório)
-    'Artistas, Jurí e Prêmios', // Nome do Metabox  (obrigatório)
+    'Projetos, Jurí e Prêmios', // Nome do Metabox  (obrigatório)
     'premios', // Slug do Post Type, sendo possível enviar apenas um valor ou um array com vários (opcional)
     'normal', // Contexto (opções: normal, advanced, ou side) (opcional)
     'high' // Prioridade (opções: high, core, default ou low) (opcional)
