@@ -39,8 +39,12 @@ hr {
     margin-bottom: 15px;
 }
 
-.section-news .entry-title, .archive .entry-title, .blog .entry-title {
+.section-news .entry-title, .blog .entry-title {
     font-size: 26px;
+}
+
+.archive .entry-title {
+    font-size: 20px;
 }
 
 .site-header {
@@ -141,12 +145,11 @@ hr {
 }
 
 .post-type-archive-premios .feature-media {
-    height: 140px;
+    height: 120px;
 }
 
 .single-premios .content-area {
     padding: 0 6%;
-    border-top: 1px solid #eee;
 }
 
 
