@@ -61,8 +61,8 @@ get_header(); ?>
         <?php endif; ?>
         </div>
 	</div>
-		<br />
 			<?php if ( $mencao_honrosa = get_field('mencao_honrosa') ): ?>
+			<br />
 			<hr />
 			<h3 class="header-title">Menção Honrosa</h3>
 		<div class="container">
@@ -77,8 +77,7 @@ get_header(); ?>
 		            <?php $content_mencao_honrosa = get_post_meta( get_the_ID(), 'desc_mencao_honrosa', true ); ?>
 		                	<p><?php echo apply_filters( 'the_content', $content_mencao_honrosa );?></p>
 		            </div>
-		    <?php endif; ?>
-			<?php if ( $mencao_honrosa_2 = get_field('mencao_honrosa_2') ): ?>
+				<?php if ( $mencao_honrosa_2 = get_field('mencao_honrosa_2') ): ?>
 					<div class="feature-item col-lg-4 col-sm-6">
 						<div class="feature-media">
 					<?php $mencao_honrosa_2 = get_field('mencao_honrosa_2'); ?>
@@ -89,12 +88,13 @@ get_header(); ?>
 		            <?php $content_mencao_honrosa_2 = get_post_meta( get_the_ID(), 'desc_mencao_honrosa_2', true ); ?>
 		                    <p><?php echo apply_filters( 'the_content', $content_mencao_honrosa_2 );?></p>        
 		            </div>
-		    <?php endif; ?>
+		    	<?php endif; ?>
 		            <div class="feature-item col-lg-4 col-sm-6"></div>
 	        </div>
         </div>
-	        <br />
-				<?php if ( $selecionados = get_field('selecionados') ): ?>
+	        <?php endif; ?>
+			<?php if ( $selecionados = get_field('selecionados') ): ?>
+				<br />
 				<hr />
 				<h3 class="header-title">Selecionados</h3>
 					<div class="container">
@@ -109,8 +109,9 @@ get_header(); ?>
 						?>
 						<?php endif;?>
 					</div>
-				<?php endif; ?>
-				<?php if ( $juri = get_field('juri') ): ?>
+				<br />
+		<?php endif; ?>
+		<?php if ( $juri = get_field('juri') ): ?>
 				<hr />
 				<h3 class="header-title">Membros do Júri</h3>
 					<div class="container">
